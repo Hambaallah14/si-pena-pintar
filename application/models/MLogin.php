@@ -3,14 +3,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class MLogin extends CI_Model{
 	
 	private $table = "tb_login";
-    private $pk    = "id_login";
+    private $pk    = "id";
 
     public function __construct() {
         parent::__construct();
     }
 
 	public function get_by_cookie($cookie){
-		$this->db->where('cookie', $cookie);
+		$this->db->where('cookies', $cookie);
 		return $this->db->get($this->table);
 	}
 
