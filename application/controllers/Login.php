@@ -67,6 +67,10 @@ Class Login extends CI_Controller{
             	$this->daftar_session($row);
 			}
 		}
+		else{
+			$this->session->set_flashdata('flash', 'Login tidak valid');
+        	$this->index();
+		}
 	}
 
 	public function logout(){

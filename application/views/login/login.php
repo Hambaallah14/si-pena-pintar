@@ -36,13 +36,13 @@
 
                             <?php echo form_open("login/cek", array('enctype'=>'multipart/form-data', 'id' => 'form_validation')); ?>
                                 <div class="form-group position-relative has-icon-left mb-4">
-                                    <input type="text" class="form-control form-control-xl" placeholder="Masukkan NIP" name="login-nip">
+                                    <input type="text" required class="form-control form-control-xl" placeholder="Masukkan NIP" name="login-nip">
                                     <div class="form-control-icon">
                                         <i class="bi bi-person"></i>
                                     </div>
                                 </div>
                                 <div class="form-group position-relative has-icon-left mb-2">
-                                    <input type="password" class="form-control form-control-xl" placeholder="Masukkan Password"name="login-password">
+                                    <input type="password" required class="form-control form-control-xl" placeholder="Masukkan Password"name="login-password">
                                     <div class="form-control-icon">
                                         <i class="bi bi-shield-lock"></i>
                                     </div>
