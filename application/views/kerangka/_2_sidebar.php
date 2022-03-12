@@ -22,7 +22,8 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
-                
+
+                    <?php if($akses_login == "admin"){ ?>
                     <li class="sidebar-item  has-sub">
                         <a href="#" class='sidebar-link'>
                             <i class="bi bi-stack"></i>
@@ -30,6 +31,10 @@
                         </a>
 
                         <ul class="submenu ">
+                            <li class="submenu-item ">
+                                <a href="<?=base_url();?>peserta">Peserta</a>
+                            </li>
+
                             <li class="submenu-item ">
                                 <a href="<?=base_url();?>widyaiswara">Widyaiswara</a>
                             </li>
@@ -41,6 +46,37 @@
                             </li>
                             <li class="submenu-item ">
                                 <a href="<?=base_url();?>materi">Materi</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <?php } ?>
+
+                    <li class="sidebar-item  has-sub">
+                        <a href="#" class='sidebar-link'>
+                            <i class="bi bi-folder-fill"></i>
+                            <span>Kelompok</span>
+                        </a>
+
+                        <ul class="submenu ">
+                            <li class="submenu-item ">
+                                <a href="<?=base_url();?>peserta">Bagi Kelompok</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="sidebar-item  has-sub">
+                        <a href="#" class='sidebar-link'>
+                            <i class="bi bi-calendar-event-fill"></i>
+                            <span>Jadwal</span>
+                        </a>
+
+                        <ul class="submenu ">
+                            <li class="submenu-item ">
+                                <a href="<?=base_url();?>peserta">Bagi Jadwal</a>
+                            </li>
+
+                            <li class="submenu-item ">
+                                <a href="<?=base_url();?>widyaiswara">Lihat Jadwal</a>
                             </li>
                         </ul>
                     </li>

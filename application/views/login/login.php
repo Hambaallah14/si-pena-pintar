@@ -13,9 +13,18 @@
 
             <!-- Favicon-->
             <link rel="icon" href="<?= base_url();?>assets/images/logo-provsu.png" type="image/x-icon">
+
+
+            <!-- SELECT CHOICES -->
+            <link rel="stylesheet" href="<?=base_url();?>assets/vendors/choices.js/choices.min.css" />
+            <!-- END SELECT CHOICES -->
         </head>
 
         <body>
+            <!-- WARNING -->
+            <div class="flash-data" data-target="Registrasi Peserta" data-flashdata="<?= $this->session->flashdata('flash1'); ?>"></div>
+            <!-- END WARNING -->
+
             <div id="auth">
                 
                 <div class="row h-100">
@@ -58,7 +67,7 @@
 
                             <div class="text-center mt-5 text-lg fs-4">
                                 <p class="text-gray-200">Belum punya akun?
-                                    <a href="<?=base_url();?>peserta/registrasi_peserta" class="font-bold">daftar disini</a>.
+                                    <a href="#" class="font-bold" data-bs-toggle="modal" data-bs-target="#FormPeserta">daftar disini</a>.
                                 </p>
                             </div>
                         </div>
@@ -71,5 +80,153 @@
                 </div>
 
             </div>
+
+
+
+        <!-- Modal Tambah Data Peserta -->
+        <div class="modal fade text-left" id="FormPeserta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel33">Tambah Data Peserta</h4>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <i data-feather="x"></i>
+                        </button>
+                    </div>
+                    <?php echo form_open("registrasi/add", array('enctype'=>'multipart/form-data', 'id' => 'form_validation')); ?>
+                        <div class="modal-body">
+                            <label for="peserta-nip">NIP</label>
+                            <div class="form-group">
+                                <input id="peserta-nip" type="text" placeholder="NIP" class="form-control" name="peserta-nip" required>
+                            </div>
+                            
+                            <label for="peserta-nama">Nama Lengkap</label>
+                            <div class="form-group">
+                                <input id="peserta-nama" type="text" placeholder="Nama Lengkap" class="form-control" name="peserta-nama" required>
+                            </div>
+                            
+                            <label for="peserta-alamat">Alamat</label>
+                            <div class="form-group">
+                                <input id="peserta-alamat" type="text" placeholder="Alamat" class="form-control" name="peserta-alamat" required>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="peserta-no_telp">No. Telp</label>
+                                    <div class="form-group">
+                                        <input id="peserta-no_telp" type="text" placeholder="No. Telp" class="form-control" name="peserta-no_telp" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="peserta-email">Email</label>
+                                    <div class="form-group">
+                                        <input id="peserta-email" type="text" placeholder="Email" class="form-control" name="peserta-email" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="peserta-instansi">Instansi</label>
+                                    <div class="form-group">
+                                        <input id="peserta-instansi" type="text" placeholder="Instansi" class="form-control" name="peserta-instansi" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="peserta-unor">Unit Organisasi</label>
+                                    <div class="form-group">
+                                        <input id="peserta-unor" type="text" placeholder="Unit Organisasi" class="form-control" name="peserta-unor" required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <label for="peserta-pelatihan">Pelatihan</label>
+                            <div class="form-group">
+                                <select class="choices form-select" id="peserta-pelatihan" name="peserta-pelatihan">
+                                    <option value="-">--Pilih Pelatihan--</option>
+                                    <?php
+                                        foreach($pelatihan as $pel){
+                                            echo"<option value='".$pel['id_pelatihan']."'>".$pel['pelatihan']."</option>";
+                                        }
+                                    ?>
+                                </select>
+                            </div>
+
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="peserta-password">Password</label>
+                                    <div class="form-group">
+                                        <input id="peserta-password" type="password" placeholder="Password" class="form-control" name="peserta-password" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="peserta-confirm-password">Konfirmasi Password</label>
+                                    <div class="form-group">
+                                        <input id="peserta-confirm-password" type="password" placeholder="Konfirmasi Password" class="form-control" name="peserta-confirm-password" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
+                                <i class="bx bx-x d-block d-sm-none"></i>
+                                <span class="d-none d-sm-block">Tutup</span>
+                            </button>
+                            
+                            <button type="submit" class="btn btn-primary ml-1" class="peserta-btn-submit">
+                                <i class="bx bx-check d-block d-sm-none"></i>
+                                <span class="d-none d-sm-block">Simpan</span>
+                            </button>
+                        </div>
+                    <?php echo form_close(); ?>
+                </div>
+            </div>
+        </div>
+        <!-- END Modal Tambah Data -->
+
+
+
+
+        <script src="<?=base_url();?>assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+        <script src="<?=base_url();?>assets/js/bootstrap.bundle.min.js"></script>    
+        <script src="<?=base_url();?>assets/vendors/apexcharts/apexcharts.js"></script>
+        <script src="<?=base_url();?>assets/js/pages/dashboard.js"></script>
+        <script src="<?=base_url();?>assets/js/mazer.js"></script>
+
+        <!-- DATATABLES -->
+        <script src="<?=base_url();?>assets/vendors/jquery/jquery.min.js"></script>
+        <script src="<?=base_url();?>assets/vendors/jquery-datatables/jquery.dataTables.min.js"></script>
+        <script src="<?=base_url();?>assets/vendors/jquery-datatables/custom.jquery.dataTables.bootstrap5.min.js"></script>
+        <script src="<?=base_url();?>assets/vendors/fontawesome/all.min.js"></script>
+        <script>
+            let jquery_datatable = $("#table1").DataTable()
+        </script>
+        <!-- END DATATABLES -->
+
+        <!-- SWEET ALERTS -->
+        <script src="<?=base_url();?>assets/js/extensions/sweetalert2.js"></script>
+        <script src="<?=base_url();?>assets/vendors/sweetalert2/sweetalert2.all.min.js"></script>
+        <!-- END SWEET ALERTS -->
+
+        <!-- FONTAWESOME -->
+        <script src="<?=base_url();?>assets/vendors/fontawesome/all.min.js"></script>
+        <!-- END FONTAWESOME -->
+
+        <!-- CHART -->
+        <script src="<?=base_url();?>assets/vendors/chartjs/Chart.min.js"></script>
+        <script src="<?=base_url();?>assets/js/pages/ui-chartjs.js"></script>
+        <!-- END CHART -->
+
+        <!-- SELECT JS -->
+        <script src="<?=base_url();?>assets/vendors/choices.js/choices.min.js"></script>
+        <script src="<?=base_url();?>assets/js/pages/form-element-select.js"></script>
+        <!-- END SELECT JS -->
+
+        <!-- SI PENA PINTAR JS -->
+        <script src="<?=base_url();?>assets/js/si-pena-pintar-js.js"></script>
+        <!-- END SI PENA PINTAR JS -->
+
         </body>
     </html>

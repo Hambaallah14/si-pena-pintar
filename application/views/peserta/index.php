@@ -1,5 +1,5 @@
 <!-- WARNING -->
-<div class="flash-data" data-target="Widyaiswara" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
+<div class="flash-data" data-target="Peserta" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
 <!-- END WARNING -->
 
         <div id="main-content">
@@ -7,13 +7,13 @@
                 <div class="page-title">
                     <div class="row">
                         <div class="col-12 col-md-6 order-md-1 order-last">
-                            <h3>Daftar Widyaiswara</h3>
+                            <h3>Daftar Peserta</h3>
                         </div>
                         <div class="col-12 col-md-6 order-md-2 order-first">
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item">Input Data</li>
-                                    <li class="breadcrumb-item active" aria-current="page">Widyaiswara</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Peserta</li>
                                 </ol>
                             </nav>
                         </div>
@@ -22,7 +22,7 @@
                 <section class="section">
                     <div class="card">
                         <div class="card-header">
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#inlineForm">Tambah Data</button>
+                           
                         </div>
                         <div class="card-body px-3 py-4-5">
                             <div class="row">
@@ -32,7 +32,9 @@
                                             <th>No</th>
                                             <th>NIP</th>
                                             <th>Nama</th>
-                                            <th>Jabatan</th>
+                                            <th>Pelatihan</th>
+                                            <th>Instansi</th>
+                                            <th>Unit Organisasi</th>
                                             <th>Status</th>
                                             <th>Opsi</th>
                                         </tr>
@@ -40,13 +42,15 @@
                                     <tbody>
                                         <?php
                                             $no = 1;
-                                            foreach($widyaiswara as $wi){
+                                            foreach($peserta as $pes){
                                                 echo"<tr>";
                                                     echo"<td>".$no."</td>";
-                                                    echo"<td>".$wi["nip_wi"]."</td>";
-                                                    echo"<td>".$wi["nama"]."</td>";
-                                                    echo"<td>".$wi["jabatan"]."</td>";
-                                                    if($wi["status_user"]=="aktif"){
+                                                    echo"<td>".$pes["nip_peserta"]."</td>";
+                                                    echo"<td>".$pes["nama"]."</td>";
+                                                    echo"<td>".$pes["pelatihan"]."</td>";
+                                                    echo"<td>".$pes["instansi"]."</td>";
+                                                    echo"<td>".$pes["unit_organisasi"]."</td>";
+                                                    if($pes["status_user"]=="aktif"){
                                                         echo"<td><span class='badge bg-success'>Aktif</span></td>";
                                                     }
                                                     else{
@@ -54,13 +58,13 @@
                                                     }
                                                     
                                                     echo"<td>";
-                                                        echo"<a href='".base_url()."widyaiswara/views' style='margin-right:10px;'>";
+                                                        echo"<a href='".base_url()."peserta/views' style='margin-right:10px;'>";
                                                             echo"<i class='iconly-boldShow' title='views'></i>";
                                                         echo"</a>";
-                                                        echo"<a class='btn-edit' href='".base_url()."widyaiswara/edit' style='margin-right:10px;' data-bs-toggle='modal' data-bs-target='#inlineForm'>";
+                                                        echo"<a class='btn-edit' href='".base_url()."peserta/edit' style='margin-right:10px;' data-bs-toggle='modal' data-bs-target='#inlineForm'>";
                                                             echo"<i class='bi bi-pencil-fill' title='edit'></i>";
                                                         echo"</a>";
-                                                        echo"<a class='btn-delete' href='".base_url()."widyaiswara/delete/".$wi["nip_wi"]."' style='margin-right:10px;'>";
+                                                        echo"<a class='btn-delete' href='".base_url()."peserta/delete/".$pes["nip_peserta"]."' style='margin-right:10px;'>";
                                                             echo"<i class='bi bi-trash-fill' title='delete'></i>";
                                                         echo"</a>";
                                                     echo"</td>";

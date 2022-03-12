@@ -35,5 +35,9 @@
         <script src="<?=base_url();?>assets/vendors/choices.js/choices.min.js"></script>
         <script src="<?=base_url();?>assets/js/pages/form-element-select.js"></script>
         <!-- END SELECT JS -->
+
+        <!-- SI PENA PINTAR JS -->
+        <script src="<?=base_url();?>assets/js/si-pena-pintar-js.js"></script>
+        <!-- END SI PENA PINTAR JS -->
     </body>
 </html>

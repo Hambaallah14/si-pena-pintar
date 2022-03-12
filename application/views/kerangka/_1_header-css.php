@@ -37,6 +37,11 @@
     <link rel="stylesheet" href="<?=base_url();?>assets/vendors/sweetalert2/sweetalert2.min.css">
     <!-- END SWEET ALERTS -->
 
+    <!-- SELECT CHOICES -->
+    <link rel="stylesheet" href="<?=base_url();?>assets/vendors/choices.js/choices.min.css" />
+    <!-- END SELECT CHOICES -->
+
+
     <!-- FONTAWESOME -->
     <link rel="stylesheet" href="<?=base_url();?>assets/vendors/fontawesome/all.min.css">
     <style>

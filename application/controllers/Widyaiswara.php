@@ -9,12 +9,13 @@ Class Widyaiswara extends CI_Controller{
 		$this->load->model('MUser');
         $this->load->model('MWidyaiswara');
 		if (! $this->session->userdata('logged')) { //cek session
-            		redirect('login'); //jika tidak ada session maka balek ke menu login
-        	}
+            redirect('login'); //jika tidak ada session maka balek ke menu login
+        }
 	}
 
 	public function index(){
-		$data['title'] 	  	      = "Daftar Widyaiswara - SI Pena Pintar";
+		$data['title'] 	  	     = "Daftar Widyaiswara - SI Pena Pintar";
+		$data['id_user'] 		 = $this->session->userdata('id_user');
         $data['akses_login'] 	 = $this->session->userdata('akses_login');
         $data['widyaiswara'] 	 = $this->MWidyaiswara->allWidyaiswara();
 		$data['user'] 	 		 = $this->MUser->user_by_iduser($this->session->userdata('id_user'), $this->session->userdata('akses_login'));
@@ -43,6 +44,12 @@ Class Widyaiswara extends CI_Controller{
 			$this->session->set_flashdata('flash', 'Disimpan');
 			redirect('widyaiswara');
 		}
+	}
+
+	public function delete($nip_wi){
+		$this->MWidyaiswara->delete($nip_wi);
+		$this->session->set_flashdata('flash', 'Dihapus');
+		redirect('widyaiswara');
 	}
 }
  ?>
