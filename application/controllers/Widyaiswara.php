@@ -51,5 +51,11 @@ Class Widyaiswara extends CI_Controller{
 		$this->session->set_flashdata('flash', 'Dihapus');
 		redirect('widyaiswara');
 	}
+
+	public function edit(){
+		$this->MWidyaiswara->edit();
+		$this->session->set_flashdata('flash', 'Diubah');
+		redirect('widyaiswara');
+	}
 }
  ?>

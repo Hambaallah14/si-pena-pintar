@@ -22,7 +22,7 @@
                 <section class="section">
                     <div class="card">
                         <div class="card-header">
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#inlineForm">Tambah Data</button>
+                            <button type="button" class="btn btn-primary wi-btn-tambah" data-bs-toggle="modal" data-bs-target="#inlineForm">Tambah Data</button>
                         </div>
                         <div class="card-body px-3 py-4-5">
                             <div class="row">
@@ -54,13 +54,15 @@
                                                     }
                                                     
                                                     echo"<td>";
-                                                        echo"<a href='".base_url()."widyaiswara/views' style='margin-right:10px;'>";
+                                                        echo"<a class='wi-btn-views' href='".base_url()."widyaiswara/views' style='margin-right:10px;'>";
                                                             echo"<i class='iconly-boldShow' title='views'></i>";
                                                         echo"</a>";
-                                                        echo"<a class='btn-edit' href='".base_url()."widyaiswara/edit' style='margin-right:10px;' data-bs-toggle='modal' data-bs-target='#inlineForm'>";
+
+                                                        echo"<a class='wi-btn-edit' href='".base_url()."widyaiswara/edit' style='margin-right:10px;' data-bs-toggle='modal' data-bs-target='#inlineForm' data-nip_wi='".$wi["nip_wi"]."' data-nama_wi='".$wi["nama"]."' data-jabatan_wi='".$wi["jabatan"]."' data-no_telp_wi='".$wi["no_telp"]."' data-email_wi='".$wi["email"]."' data-status_user_wi='".$wi["status_user"]."'>";
                                                             echo"<i class='bi bi-pencil-fill' title='edit'></i>";
                                                         echo"</a>";
-                                                        echo"<a class='btn-delete' href='".base_url()."widyaiswara/delete/".$wi["nip_wi"]."' style='margin-right:10px;'>";
+
+                                                        echo"<a class='wi-btn-delete' href='".base_url()."widyaiswara/delete/".$wi["nip_wi"]."' style='margin-right:10px;'>";
                                                             echo"<i class='bi bi-trash-fill' title='delete'></i>";
                                                         echo"</a>";
                                                     echo"</td>";
@@ -94,7 +96,7 @@
 
         <!-- Modal Tambah Data -->
         <div class="modal fade text-left" id="inlineForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title" id="myModalLabel33">Tambah Data Widyaiswara</h4>
@@ -102,36 +104,70 @@
                             <i data-feather="x"></i>
                         </button>
                     </div>
-                    <?php echo form_open("widyaiswara/add", array('enctype'=>'multipart/form-data', 'id' => 'form_validation')); ?>
+                    <?php echo form_open("", array('enctype'=>'multipart/form-data', 'id' => 'form_validation')); ?>
                         <div class="modal-body">
-                            <label for="wi-nip">NIP</label>
-                            <div class="form-group">
-                                <input id="wi-nip" type="text" placeholder="NIP" class="form-control" name="wi-nip" required>
-                            </div>
-                            
-                            <label for="wi-nama">Nama Lengkap</label>
-                            <div class="form-group">
-                                <input id="wi-nama" type="text" placeholder="Nama Lengkap" class="form-control" name="wi-nama" required>
-                            </div>
-                            
-                            <label for="wi-jabatan">Jabatan</label>
-                            <div class="form-group">
-                                <input id="wi-jabatan" type="text" placeholder="Jabatan" class="form-control" name="wi-jabatan" required>
-                            </div>
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#data-pribadi" type="button" role="tab" aria-controls="home" aria-selected="true">Data Pribadi</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#data-akun" type="button" role="tab" aria-controls="profile" aria-selected="false">Data Akun</button>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="data-pribadi" role="tabpanel" aria-labelledby="home-tab">
+                                    <div class="row mt-2">
+                                        <div class="col-md-12">
+                                            <label for="wi-nip">NIP</label>
+                                            <div class="form-group">
+                                                <input id="wi-nip" type="text" placeholder="NIP" class="form-control" name="wi-nip" required>
+                                            </div>
 
-                            <label for="wi-no_telp">No. Telp</label>
-                            <div class="form-group">
-                                <input id="wi-no_telp" type="text" placeholder="No. Telp" class="form-control" name="wi-no_telp" required>
-                            </div>
+                                            <label for="wi-nama">Nama Lengkap</label>
+                                            <div class="form-group">
+                                                <input id="wi-nama" type="text" placeholder="Nama Lengkap" class="form-control" name="wi-nama" required>
+                                            </div>
+                                            
+                                            <label for="wi-jabatan">Jabatan</label>
+                                            <div class="form-group">
+                                                <input id="wi-jabatan" type="text" placeholder="Jabatan" class="form-control" name="wi-jabatan" required>
+                                            </div>
 
-                            <label for="wi-email">Email</label>
-                            <div class="form-group">
-                                <input id="wi-email" type="text" placeholder="Email" class="form-control" name="wi-email" required>
-                            </div>
+                                            <label for="wi-no_telp">No. Telp</label>
+                                            <div class="form-group">
+                                                <input id="wi-no_telp" type="text" placeholder="No. Telp" class="form-control" name="wi-no_telp" required>
+                                            </div>
 
-                            <label for="wi-password">Password</label>
-                            <div class="form-group">
-                                <input id="wi-password" type="password" placeholder="Password" class="form-control" name="wi-password" required>
+                                            <label for="wi-email">Email</label>
+                                            <div class="form-group">
+                                                <input id="wi-email" type="text" placeholder="Email" class="form-control" name="wi-email" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="data-akun" role="tabpanel" aria-labelledby="profile-tab">
+                                    <div class="wi-status-user">
+                                        <label for="wi-status-user">Status User</label>
+                                        <fieldset class="form-group">
+                                            <select class="form-select" id="wi-status-user" name="wi-status-user">
+                                                <option value="-">--Pilih Status User--</option>
+                                                <option value="aktif">Aktif</option>
+                                                <option value="tidak aktif">Tidak aktif</option>
+                                            </select>
+                                        </fieldset>
+                                    </div>
+                                    
+                                    <div class="wi-password">
+                                        <label for="wi-password">Password</label>
+                                        <div class="form-group">
+                                            <input id="wi-password" type="password" placeholder="Password" class="form-control" name="wi-password">
+                                        </div>
+                                        <label for="wi-confirm-password">Konfirmasi Password</label>
+                                        <div class="form-group">
+                                            <input id="wi-confirm-password" type="password" placeholder="Konfirmasi Password" class="form-control" name="wi-confirm-password">
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
