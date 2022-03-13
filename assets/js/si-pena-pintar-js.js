@@ -60,15 +60,15 @@ $('.wi-btn-tambah').on('click', function(e){
 
 $('.wi-btn-edit').on('click', function(e){
 	$('#home-tab').on('click', function(e){
-		$('#form_validation').attr('action', 'http://localhost/website/github/aplikasi-si-pena-pintar/widyaiswara/edit');
+		$('#form_validation').attr('action', 'http://localhost/website/github/aplikasi-si-pena-pintar/widyaiswara/edit_pribadi');
 	});
 	
 	$('#profile-tab').on('click', function(e){
-		$('#form_validation').attr('action', 'http://localhost/website/github/aplikasi-si-pena-pintar/widyaiswara/edit-akun');
+		$('#form_validation').attr('action', 'http://localhost/website/github/aplikasi-si-pena-pintar/widyaiswara/edit_akun');
 	});
 
     $('.modal-title').text('Edit Data Widyaiswara');
-	$('#form_validation').attr('action', 'http://localhost/website/github/aplikasi-si-pena-pintar/widyaiswara/edit');
+	$('#form_validation').attr('action', 'http://localhost/website/github/aplikasi-si-pena-pintar/widyaiswara/edit_pribadi');
     $('#wi-nip').attr('readonly', 'true');
 	const nip  = $(this).data('nip_wi');
 	const nama = $(this).data('nama_wi');
@@ -86,5 +86,95 @@ $('.wi-btn-edit').on('click', function(e){
 	$('.wi-password').css('display', 'none');
 });
 // END BUTTON EDIT
+
+
+// BUTTON EDIT DAN TAMBAH PENDAMPING
+$('.pendamping-btn-tambah').on('click', function(e){
+    $('.modal-title').text('Tambah Data Pendamping');
+	$('#home-tab').on('click', function(e){
+		$('#form_validation').attr('action', 'http://localhost/website/github/aplikasi-si-pena-pintar/pendamping/add');
+	});
+	
+	$('#profile-tab').on('click', function(e){
+		$('#form_validation').attr('action', 'http://localhost/website/github/aplikasi-si-pena-pintar/pendamping/add');
+	});
+
+	$('#form_validation').attr('action', 'http://localhost/website/github/aplikasi-si-pena-pintar/pendamping/add');
+    $('#pendamping-nip').removeAttr('readonly');
+	$('.pendamping-status-user').css('display','none');
+	$('.pendamping-password').css('display', 'block');
+	$('#form_validation')[0].reset();
+});
+
+$('.pendamping-btn-edit').on('click', function(e){
+	$('#home-tab').on('click', function(e){
+		$('#form_validation').attr('action', 'http://localhost/website/github/aplikasi-si-pena-pintar/pendamping/edit_pribadi');
+	});
+	
+	$('#profile-tab').on('click', function(e){
+		$('#form_validation').attr('action', 'http://localhost/website/github/aplikasi-si-pena-pintar/pendamping/edit_akun');
+	});
+
+    $('.modal-title').text('Edit Data Pendamping');
+	$('#form_validation').attr('action', 'http://localhost/website/github/aplikasi-si-pena-pintar/pendamping/edit_pribadi');
+    $('#pendamping-nip').attr('readonly', 'true');
+	const nip  = $(this).data('nip_pendamping');
+	const nama = $(this).data('nama_pendamping');
+	const jabatan = $(this).data('jabatan_pendamping');
+	const status_user = $(this).data('status_user_pendamping');
+	$('#pendamping-nip').val(nip);
+	$('#pendamping-nama').val(nama);
+	$('#pendamping-jabatan').val(jabatan);
+	
+	$('[name="pendamping-status-user"]').val(status_user).trigger('change');
+	$('.pendamping-status-user').css('display','block');
+	$('.pendamping-password').css('display', 'none');
+});
+// END BUTTON EDIT DAN TAMBAH PENDAMPING
+
+
+// BUTTON EDIT DAN TAMBAH PENDAMPING
+$('.pendamping-btn-tambah').on('click', function(e){
+    $('.modal-title').text('Tambah Data Pendamping');
+	$('#home-tab').on('click', function(e){
+		$('#form_validation').attr('action', 'http://localhost/website/github/aplikasi-si-pena-pintar/pendamping/add');
+	});
+	
+	$('#profile-tab').on('click', function(e){
+		$('#form_validation').attr('action', 'http://localhost/website/github/aplikasi-si-pena-pintar/pendamping/add');
+	});
+
+	$('#form_validation').attr('action', 'http://localhost/website/github/aplikasi-si-pena-pintar/pendamping/add');
+    $('#pendamping-nip').removeAttr('readonly');
+	$('.pendamping-status-user').css('display','none');
+	$('.pendamping-password').css('display', 'block');
+	$('#form_validation')[0].reset();
+});
+
+$('.pendamping-btn-edit').on('click', function(e){
+	$('#home-tab').on('click', function(e){
+		$('#form_validation').attr('action', 'http://localhost/website/github/aplikasi-si-pena-pintar/pendamping/edit_pribadi');
+	});
+	
+	$('#profile-tab').on('click', function(e){
+		$('#form_validation').attr('action', 'http://localhost/website/github/aplikasi-si-pena-pintar/pendamping/edit_akun');
+	});
+
+    $('.modal-title').text('Edit Data Pendamping');
+	$('#form_validation').attr('action', 'http://localhost/website/github/aplikasi-si-pena-pintar/pendamping/edit_pribadi');
+    $('#pendamping-nip').attr('readonly', 'true');
+	const nip  = $(this).data('nip_pendamping');
+	const nama = $(this).data('nama_pendamping');
+	const jabatan = $(this).data('jabatan_pendamping');
+	const status_user = $(this).data('status_user_pendamping');
+	$('#pendamping-nip').val(nip);
+	$('#pendamping-nama').val(nama);
+	$('#pendamping-jabatan').val(jabatan);
+	
+	$('[name="pendamping-status-user"]').val(status_user).trigger('change');
+	$('.pendamping-status-user').css('display','block');
+	$('.pendamping-password').css('display', 'none');
+});
+// END BUTTON EDIT DAN TAMBAH PENDAMPING
 
 

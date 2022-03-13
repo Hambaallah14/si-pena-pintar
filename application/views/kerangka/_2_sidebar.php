@@ -45,7 +45,7 @@
                                 <a href="<?=base_url();?>pendamping">Pendamping</a>
                             </li>
                             <li class="submenu-item ">
-                                <a href="<?=base_url();?>materi">Materi</a>
+                                <a href="<?=base_url();?>mata_pelajaran">Mata Pelajaran</a>
                             </li>
                         </ul>
                     </li>
@@ -59,7 +59,7 @@
 
                         <ul class="submenu ">
                             <li class="submenu-item ">
-                                <a href="<?=base_url();?>peserta">Bagi Kelompok</a>
+                                <a href="<?=base_url();?>bagi_kelompok">Bagi Kelompok</a>
                             </li>
                         </ul>
                     </li>
@@ -72,11 +72,11 @@
 
                         <ul class="submenu ">
                             <li class="submenu-item ">
-                                <a href="<?=base_url();?>peserta">Bagi Jadwal</a>
+                                <a href="<?=base_url();?>jadwal_mapel">Mata Pelajaran</a>
                             </li>
 
                             <li class="submenu-item ">
-                                <a href="<?=base_url();?>widyaiswara">Lihat Jadwal</a>
+                                <a href="<?=base_url();?>jadwal_dosen">Dosen</a>
                             </li>
                         </ul>
                     </li>

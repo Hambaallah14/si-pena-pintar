@@ -38,7 +38,7 @@ class MWidyaiswara extends CI_Model{
       $this->db->delete('tb_login');
     }
 
-    public function edit(){
+    public function edit_pribadi(){
       // tb_widyaiswara
       $data_edit = [
         "nama"        => $this->input->post('wi-nama', true),
@@ -48,12 +48,14 @@ class MWidyaiswara extends CI_Model{
       ];
       $this->db->where("nip_wi", $this->input->post('wi-nip', true));
 		  $this->db->update('tb_widyaiswara', $data_edit);
+    }
 
+    public function edit_akun(){
       // tb_login
-      // $data_edit_status = [
-      //   "status_user" => $this->input->post('wi-status-user', true)
-      // ];
-      // $this->db->where("nip_wi", $this->input->post('wi-nip', true));
-		  // $this->db->update('tb_login', $data_edit_status);
+      $data_edit_status = [
+        "status_user" => $this->input->post('wi-status-user', true)
+      ];
+      $this->db->where("id_user", $this->input->post('wi-nip', true));
+		  $this->db->update('tb_login', $data_edit_status);
     }
 }
