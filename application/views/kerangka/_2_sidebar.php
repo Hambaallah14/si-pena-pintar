@@ -51,17 +51,13 @@
                     </li>
                     <?php } ?>
 
-                    <li class="sidebar-item  has-sub">
-                        <a href="#" class='sidebar-link'>
-                            <i class="bi bi-folder-fill"></i>
-                            <span>Kelompok</span>
-                        </a>
+                   
 
-                        <ul class="submenu ">
-                            <li class="submenu-item ">
-                                <a href="<?=base_url();?>bagi_kelompok">Bagi Kelompok</a>
-                            </li>
-                        </ul>
+                    <li class="sidebar-item  ">
+                        <a href="<?=base_url();?>bagi_kelompok" class='sidebar-link'>
+                            <i class="bi bi-people-fill"></i>
+                            <span>Pembagian Kelompok</span>
+                        </a>
                     </li>
 
                     <li class="sidebar-item  has-sub">

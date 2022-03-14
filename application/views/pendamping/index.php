@@ -62,7 +62,7 @@
                                                             echo"<i class='bi bi-pencil-fill' title='edit'></i>";
                                                         echo"</a>";
 
-                                                        echo"<a class='wi-btn-delete' href='".base_url()."pendamping/delete/".$p["nip"]."' style='margin-right:10px;'>";
+                                                        echo"<a class='btn-delete' href='".base_url()."pendamping/delete/".$p["nip"]."' style='margin-right:10px;'>";
                                                             echo"<i class='bi bi-trash-fill' title='delete'></i>";
                                                         echo"</a>";
                                                     echo"</td>";
