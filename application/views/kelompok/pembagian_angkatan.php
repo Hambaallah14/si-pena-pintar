@@ -47,11 +47,11 @@
                                                             echo"<i class='bi bi-pencil-fill' title='edit'></i>";
                                                         echo"</a>";
 
-                                                        echo"<a class='btn-delete' href='".base_url()."bagi_kelompok/delete/".$p["id_batch"]."' style='margin-right:10px;'>";
+                                                        echo"<a class='btn-delete' href='".base_url()."bagi_kelompok/delete_angkatan/".$p["id_batch"]."/".$p["id_angkatan"]."' style='margin-right:10px;'>";
                                                             echo"<i class='bi bi-trash-fill' title='delete'></i>";
                                                         echo"</a>";
 
-                                                        echo"<a class='' href='".base_url()."bagi_kelompok/tambah_angkatan/".$p["id_batch"]."' style='margin-right:10px;'>";
+                                                        echo"<a class='' href='".base_url()."bagi_kelompok/angkatan/".$p["id_batch"]."' style='margin-right:10px;'>";
                                                             echo"<i class='bi bi-plus-circle' title='Tambah Angkatan'></i>";
                                                         echo"</a>";
                                                     echo"</td>";
@@ -93,7 +93,7 @@
                             <i data-feather="x"></i>
                         </button>
                     </div>
-                    <?php echo form_open("bagi_kelompok/add", array('enctype'=>'multipart/form-data', 'id' => 'form_validation')); ?>
+                    <?php echo form_open("bagi_kelompok/add_angkatan", array('enctype'=>'multipart/form-data', 'id' => 'form_validation')); ?>
                            
                         <div class="modal-body">
                             <input id="id" type="hidden" name="id_batch" value="<?= $id_batch;?>">

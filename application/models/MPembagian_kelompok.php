@@ -29,4 +29,18 @@ class MPembagian_kelompok extends CI_Model{
     public function allPembagian_angkatan($id){
       return $this->db->query("SELECT * FROM tb_detail_batch WHERE id_batch='$id'")->result_array();
     }
+
+    public function add_angkatan(){
+      $data_angkatan = [
+        "id_batch"   => $this->input->post('id_batch', true),
+        "angkatan"   => $this->input->post('angkatan', true)
+      ];
+      $this->db->insert('tb_detail_batch', $data_angkatan);
+    }
+
+    public function delete_angkatan($id_angkatan){
+      // tb_header_batch
+      $this->db->where('id_angkatan', $id_angkatan);
+      $this->db->delete('tb_detail_batch');
+    }
 }
