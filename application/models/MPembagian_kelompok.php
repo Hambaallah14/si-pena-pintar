@@ -4,8 +4,12 @@ class MPembagian_kelompok extends CI_Model{
 		parent::__construct(); 
     }
     
-    public function allPembagian_kelompok(){
+    public function allPembagian_batch(){
       return $this->db->query("SELECT * FROM tb_header_batch")->result_array();
+    }
+
+    public function allPembagian_batch_by_id($id){
+      return $this->db->query("SELECT * FROM tb_header_batch WHERE id = '$id'")->result_array();
     }
 
     public function add(){
@@ -30,6 +34,10 @@ class MPembagian_kelompok extends CI_Model{
       return $this->db->query("SELECT * FROM tb_detail_batch WHERE id_batch='$id'")->result_array();
     }
 
+    public function allPembagian_angkatan_by_id($id){
+      return $this->db->query("SELECT * FROM tb_detail_batch WHERE id_angkatan = '$id'")->result_array();
+    }
+
     public function add_angkatan(){
       $data_angkatan = [
         "id_batch"   => $this->input->post('id_batch', true),
@@ -42,5 +50,57 @@ class MPembagian_kelompok extends CI_Model{
       // tb_header_batch
       $this->db->where('id_angkatan', $id_angkatan);
       $this->db->delete('tb_detail_batch');
+    }
+
+
+
+    // PEMBAGIAN KELOMPOK
+    public function allPembagian_kelompok($id_angkatan){
+      return $this->db->query("SELECT * FROM tb_detail_angkatan WHERE id_angkatan='$id_angkatan'")->result_array();
+    }
+
+    public function add_kelompok(){
+      $data_kelompok = [
+        "id_angkatan" => $this->input->post('id_angkatan', true),
+        "kelompok"    => $this->input->post('kelompok', true)
+      ];
+      $this->db->insert('tb_detail_angkatan', $data_kelompok);
+    }
+
+    public function delete_kelompok($id_kelompok){
+      // tb_header_batch
+      $this->db->where('id_kelompok', $id_kelompok);
+      $this->db->delete('tb_detail_angkatan');
+    }
+
+
+
+
+    // PEMBAGIAN PESERTA
+    public function allPembagian_peserta($id_kelompok){
+      return $this->db->query("SELECT tb_detail_kelompok.id_kelompok, tb_peserta.nip_peserta, tb_peserta.nama, tb_peserta.instansi, tb_peserta.unit_organisasi FROM tb_detail_kelompok INNER JOIN tb_peserta ON tb_peserta.nip_peserta=tb_detail_kelompok.nip_peserta WHERE tb_detail_kelompok.id_kelompok='$id_kelompok'")->result_array();
+    }
+
+    // MENAMPILKAN DATA YG BELUM TERSIMPAN DI TABEL DETAIL KELOMPOK
+    public function selectPeserta(){
+      return $this->db->query("SELECT * FROM tb_peserta WHERE NOT EXISTS (SELECT * FROM tb_detail_kelompok WHERE tb_peserta.nip_peserta = tb_detail_kelompok.nip_peserta)")->result_array();
+    }
+
+    public function allPembagian_kelompok_by_id($id){
+      return $this->db->query("SELECT * FROM tb_detail_angkatan WHERE id_kelompok = '$id'")->result_array();
+    }
+
+    public function add_peserta(){
+      $data_peserta = [
+        "id_kelompok"     => $this->input->post('id_kelompok', true),
+        "nip_peserta"     => $this->input->post('peserta', true)
+      ];
+      $this->db->insert('tb_detail_kelompok', $data_peserta);
+    }
+
+    public function delete_peserta($nip){
+      // tb_header_batch
+      $this->db->where('nip_peserta', $nip);
+      $this->db->delete('tb_detail_kelompok');
     }
 }

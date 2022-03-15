@@ -1,5 +1,5 @@
 <!-- WARNING -->
-<div class="flash-data" data-target="Pembagian Angkatan" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
+<div class="flash-data" data-target="Pembagian Peserta" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
 <!-- END WARNING -->
 
         <div id="main-content">
@@ -7,14 +7,16 @@
                 <div class="page-title">
                     <div class="row">
                         <div class="col-12 col-md-6 order-md-1 order-last">
-                            <h3>Daftar Pembagian Angkatan</h3>
+                            <h3>Daftar Pembagian Peserta</h3>
                         </div>
                         <div class="col-12 col-md-6 order-md-2 order-first">
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item">Pembagian</li>
-                                    <li class="breadcrumb-item"><?= $batch[0]['batch']; ?></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Angkatan</li>
+                                    <li class="breadcrumb-item">Batch</li>
+                                    <li class="breadcrumb-item">Angkatan</li>
+                                    <li class="breadcrumb-item"><?= $kelompok[0]['kelompok']; ?></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Kelompok</li>
                                 </ol>
                             </nav>
                         </div>
@@ -31,29 +33,31 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Angkatan</th>
+                                            <th>NIP</th>
+                                            <th>Peserta</th>
+                                            <th>Instansi</th>
+                                            <th>Unor</th>
                                             <th>Opsi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
                                             $no = 1;
-                                            foreach($bagi_angkatan as $p){
+                                            foreach($bagi_peserta as $p){
                                                 echo"<tr>";
                                                     echo"<td>".$no."</td>";
-                                                    echo"<td>".$p["angkatan"]."</td>";
+                                                    echo"<td>".$p["nip_peserta"]."</td>";
+                                                    echo"<td>".$p["nama"]."</td>";
+                                                    echo"<td>".$p["instansi"]."</td>";
+                                                    echo"<td>".$p["unit_organisasi"]."</td>";
                                                     
                                                     echo"<td>";
                                                         echo"<a class='pendamping-btn-edit' href='".base_url()."mata_pelajaran/edit' style='margin-right:10px;' data-bs-toggle='modal' data-bs-target='#inlineForm'>";
                                                             echo"<i class='bi bi-pencil-fill' title='edit'></i>";
                                                         echo"</a>";
 
-                                                        echo"<a class='btn-delete' href='".base_url()."bagi_kelompok/delete_angkatan/".$p["id_batch"]."/".$p["id_angkatan"]."' style='margin-right:10px;'>";
+                                                        echo"<a class='btn-delete' href='".base_url()."bagi_kelompok/delete_peserta/".$p["id_kelompok"]."/".$p["nip_peserta"]."' style='margin-right:10px;'>";
                                                             echo"<i class='bi bi-trash-fill' title='delete'></i>";
-                                                        echo"</a>";
-
-                                                        echo"<a class='' href='".base_url()."bagi_kelompok/kelompok/".$p["id_angkatan"]."' style='margin-right:10px;'>";
-                                                            echo"<i class='bi bi-plus-circle' title='Tambah Kelompok'></i>";
                                                         echo"</a>";
                                                     echo"</td>";
                                                 echo"</tr>";
@@ -89,18 +93,25 @@
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="myModalLabel33">Tambah Data Angkatan</h4>
+                        <h4 class="modal-title" id="myModalLabel33">Tambah Data Peserta</h4>
                         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                             <i data-feather="x"></i>
                         </button>
                     </div>
-                    <?php echo form_open("bagi_kelompok/add_angkatan", array('enctype'=>'multipart/form-data', 'id' => 'form_validation')); ?>
+                    <?php echo form_open("bagi_kelompok/add_peserta", array('enctype'=>'multipart/form-data', 'id' => 'form_validation')); ?>
                            
                         <div class="modal-body">
-                            <input id="id" type="hidden" name="id_batch" value="<?=$id_batch;?>">
-                            <label for="angkatan">Nama Angkatan</label>
+                            <input id="id" type="hidden" name="id_kelompok" value="<?= $id_kelompok;?>">
+                            <label for="peserta">Peserta</label>
                             <div class="form-group">
-                                <input id="angkatan" type="text" placeholder="Nama Angkatan" class="form-control" name="angkatan" required>
+                                <select class="choices form-select" id="peserta" name="peserta">
+                                    <option value="-">--Pilih Peserta--</option>
+                                    <?php
+                                        foreach($selectPeserta as $pel){
+                                            echo"<option value='".$pel['nip_peserta']."'>".$pel['nama']."</option>";
+                                        }
+                                    ?>
+                                </select>
                             </div>
                         </div>
                         

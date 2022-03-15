@@ -12,8 +12,8 @@
                         <div class="col-12 col-md-6 order-md-2 order-first">
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item">Input Data</li>
-                                    <li class="breadcrumb-item active" aria-current="page">Mata Pelajaran</li>
+                                    <li class="breadcrumb-item">Pembagian</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Batch</li>
                                 </ol>
                             </nav>
                         </div>

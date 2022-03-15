@@ -1,5 +1,5 @@
 <!-- WARNING -->
-<div class="flash-data" data-target="Pembagian Angkatan" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
+<div class="flash-data" data-target="Pembagian Kelompok" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
 <!-- END WARNING -->
 
         <div id="main-content">
@@ -7,14 +7,15 @@
                 <div class="page-title">
                     <div class="row">
                         <div class="col-12 col-md-6 order-md-1 order-last">
-                            <h3>Daftar Pembagian Angkatan</h3>
+                            <h3>Daftar Pembagian Kelompok</h3>
                         </div>
                         <div class="col-12 col-md-6 order-md-2 order-first">
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item">Pembagian</li>
-                                    <li class="breadcrumb-item"><?= $batch[0]['batch']; ?></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Angkatan</li>
+                                    <li class="breadcrumb-item">Batch</li>
+                                    <li class="breadcrumb-item"><?= $angkatan[0]['angkatan']; ?></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Kelompok</li>
                                 </ol>
                             </nav>
                         </div>
@@ -31,29 +32,29 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Angkatan</th>
+                                            <th>Kelompok</th>
                                             <th>Opsi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
                                             $no = 1;
-                                            foreach($bagi_angkatan as $p){
+                                            foreach($bagi_kelompok as $p){
                                                 echo"<tr>";
                                                     echo"<td>".$no."</td>";
-                                                    echo"<td>".$p["angkatan"]."</td>";
+                                                    echo"<td>".$p["kelompok"]."</td>";
                                                     
                                                     echo"<td>";
                                                         echo"<a class='pendamping-btn-edit' href='".base_url()."mata_pelajaran/edit' style='margin-right:10px;' data-bs-toggle='modal' data-bs-target='#inlineForm'>";
                                                             echo"<i class='bi bi-pencil-fill' title='edit'></i>";
                                                         echo"</a>";
 
-                                                        echo"<a class='btn-delete' href='".base_url()."bagi_kelompok/delete_angkatan/".$p["id_batch"]."/".$p["id_angkatan"]."' style='margin-right:10px;'>";
+                                                        echo"<a class='btn-delete' href='".base_url()."bagi_kelompok/delete_kelompok/".$p["id_angkatan"]."/".$p["id_kelompok"]."' style='margin-right:10px;'>";
                                                             echo"<i class='bi bi-trash-fill' title='delete'></i>";
                                                         echo"</a>";
 
-                                                        echo"<a class='' href='".base_url()."bagi_kelompok/kelompok/".$p["id_angkatan"]."' style='margin-right:10px;'>";
-                                                            echo"<i class='bi bi-plus-circle' title='Tambah Kelompok'></i>";
+                                                        echo"<a class='' href='".base_url()."bagi_kelompok/peserta/".$p["id_kelompok"]."' style='margin-right:10px;'>";
+                                                            echo"<i class='bi bi-plus-circle' title='Tambah Peserta'></i>";
                                                         echo"</a>";
                                                     echo"</td>";
                                                 echo"</tr>";
@@ -89,18 +90,18 @@
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="myModalLabel33">Tambah Data Angkatan</h4>
+                        <h4 class="modal-title" id="myModalLabel33">Tambah Data Kelompok</h4>
                         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                             <i data-feather="x"></i>
                         </button>
                     </div>
-                    <?php echo form_open("bagi_kelompok/add_angkatan", array('enctype'=>'multipart/form-data', 'id' => 'form_validation')); ?>
+                    <?php echo form_open("bagi_kelompok/add_kelompok", array('enctype'=>'multipart/form-data', 'id' => 'form_validation')); ?>
                            
                         <div class="modal-body">
-                            <input id="id" type="hidden" name="id_batch" value="<?=$id_batch;?>">
-                            <label for="angkatan">Nama Angkatan</label>
+                            <input id="id" type="hidden" name="id_angkatan" value="<?= $id_angkatan;?>">
+                            <label for="kelompok">Nama Kelompok</label>
                             <div class="form-group">
-                                <input id="angkatan" type="text" placeholder="Nama Angkatan" class="form-control" name="angkatan" required>
+                                <input id="kelompok" type="text" placeholder="Nama Kelompok" class="form-control" name="kelompok" required>
                             </div>
                         </div>
                         
