@@ -60,6 +60,13 @@
                         </a>
                     </li>
 
+                    <li class="sidebar-item  ">
+                        <a href="<?=base_url();?>pengampu_materi" class='sidebar-link'>
+                            <i class="bi bi-book-half"></i>
+                            <span>Pengampu Materi</span>
+                        </a>
+                    </li>
+
                     <li class="sidebar-item  has-sub">
                         <a href="#" class='sidebar-link'>
                             <i class="bi bi-calendar-event-fill"></i>

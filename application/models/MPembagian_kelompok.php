@@ -14,8 +14,9 @@ class MPembagian_kelompok extends CI_Model{
 
     public function add(){
       $data_kel = [
-        "tahun"   => $this->input->post('batch-tahun', true),
-        "batch"   => $this->input->post('batch', true)
+        "tahun"          => $this->input->post('batch-tahun', true),
+        "id_pelatihan"   => $this->input->post('id-pelatihan', true),
+        "batch"          => $this->input->post('batch', true)
       ];
       $this->db->insert('tb_header_batch', $data_kel);
     }

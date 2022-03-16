@@ -1,5 +1,5 @@
 <!-- WARNING -->
-<div class="flash-data" data-target="Pembagian Batch" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
+<div class="flash-data" data-target="Widyaiswara" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
 <!-- END WARNING -->
 
         <div id="main-content">
@@ -7,13 +7,13 @@
                 <div class="page-title">
                     <div class="row">
                         <div class="col-12 col-md-6 order-md-1 order-last">
-                            <h3>Daftar Pembagian Kelompok</h3>
+                            <h3>Daftar Pengampu Materi</h3>
                         </div>
                         <div class="col-12 col-md-6 order-md-2 order-first">
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item">Pembagian</li>
-                                    <li class="breadcrumb-item active" aria-current="page">Batch</li>
+                                    <li class="breadcrumb-item">Agenda</li>
+                                    <li class="breadcrumb-item active">Pengampu Materi</li>
                                 </ol>
                             </nav>
                         </div>
@@ -30,32 +30,28 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Tahun</th>
-                                            <th>Batch</th>
+                                            <th>NIP</th>
+                                            <th>Nama</th>
                                             <th>Opsi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
                                             $no = 1;
-                                            foreach($bagi_batch as $p){
+                                            foreach($widyaiswara as $p){
                                                 echo"<tr>";
                                                     echo"<td>".$no."</td>";
-                                                    echo"<td>".$p["tahun"]."</td>";
-                                                    echo"<td>".$p["batch"]."</td>";
-                                                    
+                                                    echo"<td>".$p["nip_wi"]."</td>";
+                                                    echo"<td>".$p["nama"]."</td>";
                                                     echo"<td>";
-                                                        echo"<a class='pendamping-btn-edit' href='".base_url()."mata_pelajaran/edit' style='margin-right:10px;' data-bs-toggle='modal' data-bs-target='#inlineForm'>";
+                                                        echo"<a class='pendamping-btn-edit' href='".base_url()."pengampu_materi/edit' style='margin-right:10px;' data-bs-toggle='modal' data-bs-target='#inlineForm'>";
                                                             echo"<i class='bi bi-pencil-fill' title='edit'></i>";
                                                         echo"</a>";
 
-                                                        echo"<a class='btn-delete' href='".base_url()."bagi_kelompok/delete/".$p["id"]."' style='margin-right:10px;'>";
+                                                        echo"<a class='btn-delete' href='".base_url()."pengampu_materi/delete/".$p["id_agenda"]."/".$p["nip_wi"]."' style='margin-right:10px;'>";
                                                             echo"<i class='bi bi-trash-fill' title='delete'></i>";
                                                         echo"</a>";
-
-                                                        echo"<a class='' href='".base_url()."bagi_kelompok/angkatan/".$p["id"]."' style='margin-right:10px;'>";
-                                                            echo"<i class='bi bi-plus-circle' title='Tambah Angkatan'></i>";
-                                                        echo"</a>";
+                                                    echo"</a>";
                                                     echo"</td>";
                                                 echo"</tr>";
                                                 $no++;
@@ -90,41 +86,25 @@
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="myModalLabel33">Tambah Data Batch</h4>
+                        <h4 class="modal-title" id="myModalLabel33">Tambah Data Pengampu Materi</h4>
                         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                             <i data-feather="x"></i>
                         </button>
                     </div>
-                    <?php echo form_open("bagi_kelompok/add", array('enctype'=>'multipart/form-data', 'id' => 'form_validation')); ?>
+                    <?php echo form_open("pengampu_materi/add_widyaiswara", array('enctype'=>'multipart/form-data', 'id' => 'form_validation')); ?>
                            
                         <div class="modal-body">
-                            <label for="batch-tahun">Tahun</label>
-                            <fieldset class="form-group">
-                            <select class="form-select" id="batch-tahun" name="batch-tahun">
-                                <option value="-">--Pilih Tahun--</option>
-                                <?php
-                                    for($i=date('Y');$i>=date('Y')-2;$i--){
-                                        echo"<option value='".$i."'>".$i."</option>";
-                                    }
-                                ?>
-                            </select>
-                            </fieldset>
-
-                            <label for="id-pelatihan">Pelatihan</label>
-                            <fieldset class="form-group">
-                            <select class="form-select" id="id-pelatihan" name="id-pelatihan">
-                                <option value="-">--Pilih Pelatihan--</option>
-                                <?php
-                                    foreach($pelatihan as $p){
-                                        echo"<option value='".$p['id_pelatihan']."'>".$p['pelatihan']."</option>";
-                                    }
-                                ?>
-                            </select>
-                            </fieldset>
-
-                            <label for="batch">Nama Batch</label>
+                            <input id="id" type="hidden" name="id_agenda" value="<?= $id_agenda;?>">
+                            <label for="peserta">Widyaiswara</label>
                             <div class="form-group">
-                                <input id="batch" type="text" placeholder="Nama Batch" class="form-control" name="batch" required>
+                                <select class="choices form-select" id="wi" name="wi">
+                                    <option value="-">--Pilih Widyaiswara--</option>
+                                    <?php
+                                        foreach($selectWidyaiswara as $pel){
+                                            echo"<option value='".$pel['nip_wi']."'>".$pel['nama']."</option>";
+                                        }
+                                    ?>
+                                </select>
                             </div>
                         </div>
                         
