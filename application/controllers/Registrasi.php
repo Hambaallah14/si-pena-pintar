@@ -17,12 +17,7 @@ Class Registrasi extends CI_Controller{
 		$data['title'] 	  	      = "Registrasi Peserta - SI Pena Pintar";
 		$this->form_validation->set_rules('peserta-nip', 'peserta-nip', 'required');
 		$this->form_validation->set_rules('peserta-nama', 'peserta-nama', 'required');
-		$this->form_validation->set_rules('peserta-alamat', 'peserta-alamat', 'required');
-		$this->form_validation->set_rules('peserta-no_telp', 'peserta-no_telp', 'required');
 		$this->form_validation->set_rules('peserta-email', 'peserta-email', 'required');
-        $this->form_validation->set_rules('peserta-instansi', 'peserta-instansi', 'required');
-        $this->form_validation->set_rules('peserta-unor', 'peserta-unor', 'required');
-        $this->form_validation->set_rules('peserta-pelatihan', 'peserta-pelatihan', 'required');
         $this->form_validation->set_rules('peserta-password', 'peserta-password', 'required');
 		if ($this->form_validation->run() == FALSE) {
 			$this->load->view('kerangka/_1_header-css', $data);

@@ -1,3 +1,8 @@
+function UpperCase($id) {
+    var x = document.getElementById($id);
+    x.value = x.value.toUpperCase();
+}
+
 // SWEET ALERT
 const flashdata = $('.flash-data').data('flashdata');
 const target    = $('.flash-data').data('target');

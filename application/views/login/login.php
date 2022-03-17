@@ -95,61 +95,22 @@
                     </div>
                     <?php echo form_open("registrasi/add", array('enctype'=>'multipart/form-data', 'id' => 'form_validation')); ?>
                         <div class="modal-body">
-                            <label for="peserta-nip">NIP</label>
+                            <label for="peserta-nip">NIP </label>
+                            <small class="text-muted">(Ketik angka NIP tanpa Spasi Contoh : 197711022011011002)</small>
                             <div class="form-group">
                                 <input id="peserta-nip" type="text" placeholder="NIP" class="form-control" name="peserta-nip" required>
                             </div>
                             
-                            <label for="peserta-nama">Nama Lengkap</label>
+                            <label for="peserta-nama">Nama Lengkap & Gelar </label>
+                            <small class="text-muted">(Nama Isi dengan huruf KAPITAL, Gelar menyesuaikan)</small>
                             <div class="form-group">
-                                <input id="peserta-nama" type="text" placeholder="Nama Lengkap" class="form-control" name="peserta-nama" required>
+                                <input id="peserta-nama" type="text" placeholder="Nama Lengkap" class="form-control" name="peserta-nama" required onkeyup="UpperCase('peserta-nama');">
                             </div>
                             
-                            <label for="peserta-alamat">Alamat</label>
+                            <label for="peserta-email">Email</label>
+                            <small class="text-muted">eg.<i>someone@example.com</i></small>
                             <div class="form-group">
-                                <input id="peserta-alamat" type="text" placeholder="Alamat" class="form-control" name="peserta-alamat" required>
-                            </div>
-                            
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="peserta-no_telp">No. Telp</label>
-                                    <div class="form-group">
-                                        <input id="peserta-no_telp" type="text" placeholder="No. Telp" class="form-control" name="peserta-no_telp" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="peserta-email">Email</label>
-                                    <div class="form-group">
-                                        <input id="peserta-email" type="text" placeholder="Email" class="form-control" name="peserta-email" required>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="peserta-instansi">Instansi</label>
-                                    <div class="form-group">
-                                        <input id="peserta-instansi" type="text" placeholder="Instansi" class="form-control" name="peserta-instansi" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="peserta-unor">Unit Organisasi</label>
-                                    <div class="form-group">
-                                        <input id="peserta-unor" type="text" placeholder="Unit Organisasi" class="form-control" name="peserta-unor" required>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <label for="peserta-pelatihan">Pelatihan</label>
-                            <div class="form-group">
-                                <select class="choices form-select" id="peserta-pelatihan" name="peserta-pelatihan">
-                                    <option value="-">--Pilih Pelatihan--</option>
-                                    <?php
-                                        foreach($pelatihan as $pel){
-                                            echo"<option value='".$pel['id_pelatihan']."'>".$pel['pelatihan']."</option>";
-                                        }
-                                    ?>
-                                </select>
+                                <input id="peserta-email" type="text" placeholder="Email" class="form-control" name="peserta-email" required>
                             </div>
 
                             

@@ -6,14 +6,14 @@ Class Login extends CI_Controller{
 		$this->load->library('Form_validation');
 		$this->load->helper(array('Form', 'Cookie', 'String'));
 		$this->load->model('MLogin');
-		$this->load->model('MPelatihan');
+		// $this->load->model('MPelatihan');
 	}
 
 	public function index(){
 		
 		$cookie = get_cookie('penjadwalan'); // Ambil Cookie
-		if ($this->session->userdata('logged')) { // Cek Session
-			redirect('dashboard');
+		if ($this->session->userdata('logged')) { // Cek Session		
+			// redirect('dashboard');
 		}
 		else if($cookie <> ''){
 			$row = $this->MLogin->get_by_cookie($cookie)->row(); //memeriksa cookie
@@ -26,7 +26,7 @@ Class Login extends CI_Controller{
 					'password' => set_value('password'),
 					'flash'    => $this->session->flashdata('flash')
 				);
-				$data["pelatihan"] = $this->MPelatihan->allPelatihan();
+				
 				$this->load->view('login/login', $data);
 			}
 		}
@@ -36,20 +36,28 @@ Class Login extends CI_Controller{
 				'password' => set_value('password'),
 				'flash'    => $this->session->flashdata('flash')
 			);
-			$data["pelatihan"] = $this->MPelatihan->allPelatihan();
 			$this->load->view('login/login', $data);
 		}
 	}
 
 	public function daftar_session($row){
 		$session = array(
-			'logged'		=> TRUE,
-			'id'			=> $row->id,
-			'id_user'		=> $row->id_user,
-			'akses_login'	=> $row->akses_login
+			'logged'						=> TRUE,
+			'id'							=> $row->id,
+			'id_user'						=> $row->id_user,
+			'akses_login'					=> $row->akses_login,
+			'status_kelengkapan_data'		=> $row->status_kelengkapan_data
 			);
-		$this->session->set_userdata($session);
-		redirect('dashboard');
+		
+			$this->session->set_userdata($session);
+			if($row->status_kelengkapan_data == "tidak"){
+				redirect('form_akun');
+			}
+			else{
+				redirect('dashboard');
+			}
+			
+			
 	}
 
 	public function cek(){
@@ -68,7 +76,9 @@ Class Login extends CI_Controller{
 					'cookies' => $key
 				);
 				$this->MLogin->update($update_key, $row->id);
-            	$this->daftar_session($row);
+				$this->daftar_session($row);
+			
+            	
 			}
 		}
 		else{
