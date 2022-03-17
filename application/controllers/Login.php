@@ -6,7 +6,6 @@ Class Login extends CI_Controller{
 		$this->load->library('Form_validation');
 		$this->load->helper(array('Form', 'Cookie', 'String'));
 		$this->load->model('MLogin');
-		// $this->load->model('MPelatihan');
 	}
 
 	public function index(){
@@ -51,7 +50,7 @@ Class Login extends CI_Controller{
 		
 			$this->session->set_userdata($session);
 			if($row->status_kelengkapan_data == "tidak"){
-				redirect('form_akun');
+				redirect('registrasi/form_registrasi');
 			}
 			else{
 				redirect('dashboard');

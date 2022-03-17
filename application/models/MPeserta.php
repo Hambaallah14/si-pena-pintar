@@ -12,6 +12,22 @@ class MPeserta extends CI_Model{
       return $this->db->query("SELECT * FROM tb_agama")->result_array();
     }
 
+    public function allGolongan(){
+      return $this->db->query("SELECT * FROM tb_gol ORDER BY id_gol DESC")->result_array();
+    }
+
+    public function allInstansi(){
+      return $this->db->query("SELECT * FROM tb_instansi")->result_array();
+    }
+
+    public function allPolaPenyelenggaraan(){
+      return $this->db->query("SELECT * FROM tb_pola_penyelenggaraan")->result_array();
+    }
+
+    public function allPelatihan(){
+      return $this->db->query("SELECT * FROM tb_pelatihan")->result_array();
+    }
+
     public function add(){
       $data_peserta = [
         "nip_peserta"             => $this->input->post('peserta-nip', true),
@@ -30,6 +46,36 @@ class MPeserta extends CI_Model{
       $this->db->insert('tb_login', $data_login);
     }
 
+    public function edit_form_registrasi(){
+      $data_edit = [
+        "nama"            => $this->input->post('peserta-nama', true),
+        "alamat"          => $this->input->post('peserta-alamat', true),
+        "jenis_kelamin"   => $this->input->post('peserta-jenis_kelamin', true),
+        "id_agama"        => $this->input->post('peserta-agama', true),
+        "tempat_lahir"    => $this->input->post('peserta-tempat_lhr', true),
+        "tgl_lahir"       => $this->input->post('peserta-tgl_lhr', true),
+        "email"           => $this->input->post('peserta-email', true),
+        "no_telp"         => $this->input->post('peserta-no_telp', true),
+        "id_pelatihan"    => $this->input->post('peserta-pelatihan', true),
+        "id_gol"          => $this->input->post('peserta-gol', true),
+        "jab_terakhir"    => $this->input->post('peserta-jabatan', true),
+        "id_pola"         => $this->input->post('peserta-pola', true),
+        "id_instansi"     => $this->input->post('peserta-instansi', true),
+        "unor"            => $this->input->post('peserta-unor', true),
+        "alamat_unor"     => $this->input->post('peserta-alamat_unor', true)
+      ];
+      $this->db->where("nip_peserta", $this->input->post('peserta-nip', true));
+		  $this->db->update('tb_peserta', $data_edit);
+
+      $data_login = [
+        "status_kelengkapan_data" => "ya"
+      ];
+      $this->db->where("id_user", $this->input->post('peserta-nip', true));
+		  $this->db->update('tb_login', $data_login);
+
+      $data_dokumen = []
+    }
+
 
     public function delete($nip_peserta){
       $this->db->where('nip_peserta', $nip_peserta);
@@ -38,4 +84,6 @@ class MPeserta extends CI_Model{
         $this->db->where('id_user', $nip_peserta);
         $this->db->delete('tb_login');
     }
+
+
 }

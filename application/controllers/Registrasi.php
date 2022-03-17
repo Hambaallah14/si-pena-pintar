@@ -7,6 +7,7 @@ Class Registrasi extends CI_Controller{
 		$this->load->library('form_validation');
 		$this->load->helper('url');
         $this->load->model('MPeserta');
+		$this->load->model('MUser');
 	}
 
 	public function index(){
@@ -30,6 +31,25 @@ Class Registrasi extends CI_Controller{
 			$this->session->set_flashdata('flash1', 'Disimpan');
 			redirect('login');
 		}
+	}
+
+	public function form_registrasi(){
+		$data['title'] 	 		 = "Form Registrasi - SI Pena Pintar";
+		$data['id_user'] 		 = $this->session->userdata('id_user');
+		$data['akses_login'] 	 = $this->session->userdata('akses_login');
+		$data['user'] 	 		 = $this->MUser->user_by_iduser($this->session->userdata('id_user'), $this->session->userdata('akses_login'));
+		$data['pelatihan']		 = $this->MPeserta->allPelatihan();
+		$data['agama']			 = $this->MPeserta->allAgama();
+		$data['gol']			 = $this->MPeserta->allGolongan();
+		$data['instansi']		 = $this->MPeserta->allInstansi();
+		$data['pola']			 = $this->MPeserta->allPolaPenyelenggaraan();
+		$this->load->view('form-data-pribadi/index', $data);
+	}
+
+	public function add_form_registrasi(){
+		$this->MPeserta->edit_form_registrasi();
+		$this->session->set_flashdata('flash', 'Diperbaharui');
+		redirect('dashboard');
 	}
 }
  ?>

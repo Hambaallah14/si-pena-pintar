@@ -3,6 +3,11 @@ function UpperCase($id) {
     x.value = x.value.toUpperCase();
 }
 
+$('#check-agree').on('click', function(e){
+	// alert('a');
+	$('#registrasi-btn-submit').toggleClass("disabled");
+});
+
 // SWEET ALERT
 const flashdata = $('.flash-data').data('flashdata');
 const target    = $('.flash-data').data('target');

@@ -1,3 +1,7 @@
+<!-- WARNING -->
+<div class="flash-data" data-target="Data Diri Pegawai" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
+<!-- END WARNING -->
+
         <div id="main-content">
             <div class="page-heading">
                 <div class="page-title">
