@@ -1,6 +1,3 @@
-<!-- WARNING -->
-<div class="flash-data" data-target="Data Diri Pegawai" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
-<!-- END WARNING -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -62,11 +59,12 @@
                                             <label for="peserta-nama">Nama Lengkap</label>
                                             <div class="form-group">
                                                 <input id="peserta-nama" type="text" placeholder="Nama Lengkap" class="form-control" name="peserta-nama" value="<?= $user[0]["nama"];?>" required onkeyup="UpperCase('peserta-nama');">
+                                                <?= form_error('peserta-nama', '<span style="color:red;"></span>'); ?>
                                             </div>
 
                                             <label for="peserta-alamat">Alamat</label>
                                             <div class="form-group">
-                                                <input id="peserta-alamat" type="text" placeholder="Alamat" class="form-control" name="peserta-alamat" required onkeyup="UpperCase('peserta-alamat');">
+                                                <input id="peserta-alamat" type="text" placeholder="Alamat" class="form-control" name="peserta-alamat" required onkeyup="UpperCase('peserta-alamat');" value="<?=$user[0]["alamat"];?>">
                                             </div>
 
                                             <div class="row">
@@ -100,13 +98,13 @@
                                                     <label for="peserta-tempat_lhr">Tempat Lahir </label>
                                                     <small class="text-muted">(Diisi sesuai dengan SK CPNS atau SK Jabatan)</small>
                                                     <div class="form-group">
-                                                        <input id="peserta-tempat_lhr" type="text" placeholder="Tempat Lahir" class="form-control" name="peserta-tempat_lhr" required onkeyup="UpperCase('peserta-tempat_lhr');">
+                                                        <input id="peserta-tempat_lhr" type="text" placeholder="Tempat Lahir" class="form-control" name="peserta-tempat_lhr" required onkeyup="UpperCase('peserta-tempat_lhr');" value="<?=$user[0]["tempat_lahir"];?>">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label for="peserta-tgl_lhr">Tanggal Lahir</label>
                                                     <div class="form-group">
-                                                        <input id="peserta-tgl_lhr" type="date" placeholder="Tanggal Lahir" class="form-control" name="peserta-tgl_lhr" required>
+                                                        <input id="peserta-tgl_lhr" type="date" placeholder="Tanggal Lahir" class="form-control" name="peserta-tgl_lhr" required value="<?=$user[0]["tgl_lahir"];?>">
                                                     </div>
                                                 </div>
                                             </div>
@@ -122,7 +120,7 @@
                                                 <div class="col-md-6">
                                                     <label for="peserta-no_telp">No. Telp</label>
                                                     <div class="form-group">
-                                                        <input id="peserta-no_telp" type="text" placeholder="No. Telp" class="form-control" name="peserta-no_telp" required>
+                                                        <input id="peserta-no_telp" type="text" placeholder="No. Telp" class="form-control" name="peserta-no_telp" required value="<?=$user[0]["no_telp"];?>">
                                                     </div>
                                                 </div>
                                             </div>
@@ -162,7 +160,7 @@
                                                 <div class="col-md-6">
                                                     <label for="peserta-jabatan">Jabatan Terakhir</label>
                                                     <div class="form-group">
-                                                        <input id="peserta-jabatan" type="text" placeholder="Jabatan Terakhir" class="form-control" name="peserta-jabatan" required onkeyup="UpperCase('peserta-jabatan');">
+                                                        <input id="peserta-jabatan" type="text" placeholder="Jabatan Terakhir" class="form-control" name="peserta-jabatan" required onkeyup="UpperCase('peserta-jabatan');" value="<?=$user[0]["jab_terakhir"];?>">
                                                     </div>
                                                 </div>
                                             </div>
@@ -198,7 +196,7 @@
                                                     <label for="peserta-unor">Unit Kerja</label>
                                                     <small class="text-muted">(Sesuai SPMT)</small>
                                                     <div class="form-group">
-                                                        <input id="peserta-unor" type="text" placeholder="Unit Kerja" class="form-control" name="peserta-unor" required onkeyup="UpperCase('peserta-unor');">
+                                                        <input id="peserta-unor" type="text" placeholder="Unit Kerja" class="form-control" name="peserta-unor" required onkeyup="UpperCase('peserta-unor');" value="<?=$user[0]["unor"];?>">
                                                     </div>
                                                 </div>
 
@@ -206,21 +204,27 @@
                                                     <label for="peserta-alamat_unor">Alamat Unit Kerja</label>
                                                     <small class="text-muted">(Sesuai SPMT)</small>
                                                     <div class="form-group">
-                                                        <input id="peserta-alamat_unor" type="text" placeholder="Alamat Unit Kerja" class="form-control" name="peserta-alamat_unor" required onkeyup="UpperCase('peserta-alamat_unor');">
+                                                        <input id="peserta-alamat_unor" type="text" placeholder="Alamat Unit Kerja" class="form-control" name="peserta-alamat_unor" required onkeyup="UpperCase('peserta-alamat_unor');" value="<?=$user[0]["alamat_unor"];?>">
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <label for="peserta-upload_sk_cpns" class="form-label">SK CPNS </label>
-                                                    <small class="text-muted">(Asli atau Fotocopy di Legalisir)</small>
-                                                    <input class="form-control" type="file" id="peserta-upload_sk_cpns" required name="peserta-upload_sk_cpns">
+                                                    <?php if ($this->session->flashdata('warning')) { ?>
+                                                        <div class="alert alert-danger" role="alert">
+                                                            <?= $this->session->flashdata('warning'); ?>
+                                                        </div>
+                                                    <?php } ?>
+
+                                                    <label for="peserta-upload_sk_cpns" class="form-label">SK CPNS / PNS</label>
+                                                    <small class="text-muted">(Asli atau Fotocopy di Legalisir/Format File Pdf maks 1 mb)</small>
+                                                    <input class="form-control" type="file" id="peserta-upload_sk_cpns" required name="peserta-upload_sk_cpns" accept=".pdf">
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label for="peserta-upload_sk_jabatan" class="form-label">SK jabatan Terakhir </label>
-                                                    <small class="text-muted">(Asli atau Fotocopy di Legalisir)</small>
-                                                    <input class="form-control" type="file" id="peserta-upload_sk_jabatan" required name="peserta-upload_sk_jabatan">
+                                                    <small class="text-muted">(Asli atau Fotocopy di Legalisir/Format File Pdf maks 1 mb)</small>
+                                                    <input class="form-control" type="file" id="peserta-upload_sk_jabatan" required name="peserta-upload_sk_jabatan" accept=".pdf">
                                                 </div>
                                             </div>
 
@@ -238,7 +242,7 @@
                                                         <span class="d-none d-sm-block">Tutup</span>
                                                     </button>
                                                     
-                                                    <button type="submit" class="btn btn-primary ml-1 disabled" id="registrasi-btn-submit">
+                                                    <button type="submit" class="btn btn-primary ml-1 disabled" id="registrasi-btn-submit" name="submit">
                                                         <i class="bx bx-check d-block d-sm-none"></i>
                                                         <span class="d-none d-sm-block">Simpan</span>
                                                     </button>

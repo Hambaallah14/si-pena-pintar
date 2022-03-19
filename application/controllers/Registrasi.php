@@ -16,10 +16,12 @@ Class Registrasi extends CI_Controller{
 
 	public function add(){
 		$data['title'] 	  	      = "Registrasi Peserta - SI Pena Pintar";
-		$this->form_validation->set_rules('peserta-nip', 'peserta-nip', 'required');
-		$this->form_validation->set_rules('peserta-nama', 'peserta-nama', 'required');
-		$this->form_validation->set_rules('peserta-email', 'peserta-email', 'required');
-        $this->form_validation->set_rules('peserta-password', 'peserta-password', 'required');
+		$this->form_validation->set_rules('peserta-nip', 'NIP', 'required');
+		$this->form_validation->set_rules('peserta-nama', 'Nama', 'required');
+		$this->form_validation->set_rules('peserta-email', 'Email', 'required');
+        $this->form_validation->set_rules('peserta-password', 'Password', 'required|matches[peserta-password]');
+		$this->form_validation->set_rules('peserta-confirm-password', 'Konfirmasi assword', 'required');
+		
 		if ($this->form_validation->run() == FALSE) {
 			$this->load->view('kerangka/_1_header-css', $data);
 			$this->load->view('kerangka/_2_sidebar');
@@ -47,9 +49,15 @@ Class Registrasi extends CI_Controller{
 	}
 
 	public function add_form_registrasi(){
-		$this->MPeserta->edit_form_registrasi();
-		$this->session->set_flashdata('flash', 'Diperbaharui');
-		redirect('dashboard');
+		$nip 	    = $this->input->post('peserta-nip', true);
+		$upload_sk  = $this->MPeserta->upload_file_sk_cpns($nip);
+		$upload_jab = $this->MPeserta->upload_file_sk_jab($nip);
+		if($upload_sk['result'] == "success" || $upload_jab['result'] == "success"){
+			$this->MPeserta->edit_form_registrasi($upload_sk, $upload_jab);
+			$this->session->set_flashdata('flash', 'Diperbaharui');
+			redirect('dashboard');
+		}
+		$this->Mpeserta->edit_form_registrasi($upload_file);
 	}
 }
  ?>

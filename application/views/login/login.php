@@ -100,18 +100,21 @@
                             <div class="form-group">
                                 <input id="peserta-nip" type="text" placeholder="NIP" class="form-control" name="peserta-nip" required>
                             </div>
+                            <?= form_error('peserta-nip', '<span style="color:red;"></span>'); ?>
                             
                             <label for="peserta-nama">Nama Lengkap & Gelar </label>
                             <small class="text-muted">(Nama Isi dengan huruf KAPITAL, Gelar menyesuaikan)</small>
                             <div class="form-group">
                                 <input id="peserta-nama" type="text" placeholder="Nama Lengkap" class="form-control" name="peserta-nama" required onkeyup="UpperCase('peserta-nama');">
                             </div>
+                            <?= form_error('peserta-nama', '<span style="color:red;"></span>'); ?>
                             
                             <label for="peserta-email">Email</label>
                             <small class="text-muted">eg.<i>someone@example.com</i></small>
                             <div class="form-group">
                                 <input id="peserta-email" type="text" placeholder="Email" class="form-control" name="peserta-email" required>
                             </div>
+                            <?= form_error('peserta-email', '<span style="color:red;"></span>'); ?>
 
                             
                             <div class="row">
@@ -126,6 +129,7 @@
                                     <div class="form-group">
                                         <input id="peserta-confirm-password" type="password" placeholder="Konfirmasi Password" class="form-control" name="peserta-confirm-password" required>
                                     </div>
+                                    <?= form_error('peserta-confirm-password', '<span style="color:red;"></span>'); ?>
                                 </div>
                             </div>
                         </div>

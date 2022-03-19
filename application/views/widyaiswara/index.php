@@ -126,12 +126,32 @@
 
                                                 <label for="wi-nama">Nama Lengkap</label>
                                                 <div class="form-group">
-                                                    <input id="wi-nama" type="text" placeholder="Nama Lengkap" class="form-control" name="wi-nama" required>
+                                                    <input id="wi-nama" type="text" placeholder="Nama Lengkap" class="form-control" name="wi-nama" required onkeyup="UpperCase('wi-nama');">
                                                 </div>
                                                 
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label for="wi-tempat_lahir">Tempat Lahir</label>
+                                                        <div class="form-group">
+                                                            <input id="wi-tempat_lahir" type="text" placeholder="Tempat Lahir" class="form-control" name="wi-tempat_lahir" required onkeyup="UpperCase('wi-tempat_lahir');">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label for="wi-tgl_lahir">Tanggal Lahir</label>
+                                                        <div class="form-group">
+                                                            <input id="wi-tgl_lahir" type="date" class="form-control" name="wi-tgl_lahir" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <label for="wi-alamat">Alamat</label>
+                                                <div class="form-group">
+                                                    <input id="wi-alamat" type="text" placeholder="Alamat" class="form-control" name="wi-alamat" required onkeyup="UpperCase('wi-alamat');">
+                                                </div>
+
                                                 <label for="wi-jabatan">Jabatan</label>
                                                 <div class="form-group">
-                                                    <input id="wi-jabatan" type="text" placeholder="Jabatan" class="form-control" name="wi-jabatan" required>
+                                                    <input id="wi-jabatan" type="text" placeholder="Jabatan" class="form-control" name="wi-jabatan" required onkeyup="UpperCase('wi-jabatan');">
                                                 </div>
 
                                                 <label for="wi-no_telp">No. Telp</label>
@@ -143,17 +163,21 @@
                                                 <div class="form-group">
                                                     <input id="wi-email" type="text" placeholder="Email" class="form-control" name="wi-email" required>
                                                 </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
-                                                    <i class="bx bx-x d-block d-sm-none"></i>
-                                                    <span class="d-none d-sm-block">Tutup</span>
-                                                </button>
-                                                
-                                                <button type="submit" class="btn btn-primary ml-1" class="wi-btn-submit">
-                                                    <i class="bx bx-check d-block d-sm-none"></i>
-                                                    <span class="d-none d-sm-block">Simpan</span>
-                                                </button>
+
+                                                <div class="row mb-4">
+                                                    <div class="col-md-6">
+                                                        <label for="wi-npwp">No. NPWP</label>
+                                                        <div class="form-group">
+                                                            <input id="wi-npwp" type="text" placeholder="No. NPWP" class="form-control" name="wi-npwp" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label for="wi-rek">No. Rekening</label>
+                                                        <div class="form-group">
+                                                            <input id="wi-rek" type="text" placeholder="No. Rekening" class="form-control" name="wi-rek" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

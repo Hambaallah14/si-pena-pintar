@@ -1,12 +1,13 @@
+// FORM REGISTRASI ULANG
 function UpperCase($id) {
     var x = document.getElementById($id);
     x.value = x.value.toUpperCase();
 }
 
 $('#check-agree').on('click', function(e){
-	// alert('a');
 	$('#registrasi-btn-submit').toggleClass("disabled");
 });
+// END FORM REGISTRASI ULANG
 
 // SWEET ALERT
 const flashdata = $('.flash-data').data('flashdata');
@@ -186,5 +187,30 @@ $('.pendamping-btn-edit').on('click', function(e){
 	$('.pendamping-password').css('display', 'none');
 });
 // END BUTTON EDIT DAN TAMBAH PENDAMPING
+
+
+
+// TAMBAH PEMBAGIAN PESERTA KELOMPOK
+$('.kelompok-peserta-btnSubmit').css('display', 'none');
+$("#kelompok-peserta-btnFilter").on('click', function(){
+	var instansi = $('#kelompok-peserta-instansi').val();
+	var golongan = $('#kelompok-peserta-gol').val();
+
+	if(instansi == "-" && golongan == "-"){
+		alert("Pilih data");
+	}
+	else{
+		$.ajax({
+			type    : 'POST',
+			url     : 'http://localhost/website/github/aplikasi-si-pena-pintar/bagi_kelompok/selectPeserta',
+			data    : {instansi : instansi, golongan : golongan},
+			success : function(response){
+			  $(".data-all_peserta-kelompok").html(response);
+			}
+		});
+	}
+	$('.kelompok-peserta-btnSubmit').css('display', 'block');
+});
+// });
 
 

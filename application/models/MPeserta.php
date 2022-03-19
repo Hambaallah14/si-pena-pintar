@@ -44,9 +44,58 @@ class MPeserta extends CI_Model{
           "status_kelengkapan_data" => "tidak"
       ];
       $this->db->insert('tb_login', $data_login);
+
+      $data_dokumen = [
+          "nip_peserta"   => $this->input->post('peserta-nip', true),
+          "sk_cpns"       => "",
+          "sk_jab"        => ""
+      ];
+      $this->db->insert('tb_dokumen', $data_dokumen);
+
     }
 
-    public function edit_form_registrasi(){
+   
+    public function upload_file_sk_cpns($nip){
+          $nama_file               = $nip."BPSDM".time(); //membuat nama file baru
+          $config['file_name']     = $nama_file; //mengubah nama file
+          $config['upload_path']   = './assets/dokumen'; //lokasi file
+          $config['allowed_types'] = 'pdf'; //format file PDF
+          $config['max_size']	     = '10000000'; //Ukuran File 1 mb
+          $config['remove_space']  = TRUE;
+          $this->load->library('upload', $config);
+
+          // INPUT TYPE FILES KE-1    
+          if($this->upload->do_upload('peserta-upload_sk_cpns')){
+            $return = array('result' => 'success', 'file' => $this->upload->data(), 'error' => '');
+              return $return;
+          }
+            else{
+              $return = array('result' => 'failed', 'file' => '', 'error' => $this->upload->display_errors());
+              return $return;
+          }
+    }
+
+    public function upload_file_sk_jab($nip){
+        $nama_file               = $nip."BPSDM".time(); //membuat nama file baru
+        $config['file_name']     = $nama_file; //mengubah nama file
+        $config['upload_path']   = './assets/dokumen'; //lokasi file
+        $config['allowed_types'] = 'pdf'; //format file PDF
+        $config['max_size']	     = '10000000'; //Ukuran File 1 mb
+        $config['remove_space']  = TRUE;
+        $this->load->library('upload', $config);
+
+        // INPUT TYPE FILES KE-1    
+        if($this->upload->do_upload('peserta-upload_sk_jabatan')){
+          $return = array('result' => 'success', 'file' => $this->upload->data(), 'error' => '');
+            return $return;
+        }
+          else{
+            $return = array('result' => 'failed', 'file' => '', 'error' => $this->upload->display_errors());
+            return $return;
+        }
+    }
+
+    public function edit_form_registrasi($upload_sk, $upload_jab){
       $data_edit = [
         "nama"            => $this->input->post('peserta-nama', true),
         "alamat"          => $this->input->post('peserta-alamat', true),
@@ -73,7 +122,13 @@ class MPeserta extends CI_Model{
       $this->db->where("id_user", $this->input->post('peserta-nip', true));
 		  $this->db->update('tb_login', $data_login);
 
-      $data_dokumen = []
+      // mengupload nama file ke dalam DB
+      $data_dokumen = [
+        "sk_cpns"     =>  $upload_sk['file']['file_name'],
+        "sk_jab"      =>  $upload_jab['file']['file_name']
+      ];
+      $this->db->where("nip_peserta", $this->input->post('peserta-nip', true));
+      $this->db->update('tb_dokumen', $data_dokumen);
     }
 
 

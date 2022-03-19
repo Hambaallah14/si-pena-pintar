@@ -10,11 +10,16 @@ class MWidyaiswara extends CI_Model{
 
     public function add(){
       $data_wi = [
-        "nip_wi"      => $this->input->post('wi-nip', true),
-        "nama"        => $this->input->post('wi-nama', true),
-        "jabatan"     => $this->input->post('wi-jabatan', true),
-        "no_telp"     => $this->input->post('wi-no_telp', true),
-        "email"       => $this->input->post('wi-email', true)
+        "nip_wi"        => $this->input->post('wi-nip', true),
+        "nama"          => $this->input->post('wi-nama', true),
+        "jabatan"       => $this->input->post('wi-jabatan', true),
+        "tempat_lahir"  => $this->input->post('wi-tempat_lahir', true),
+        "tgl_lahir"     => $this->input->post('wi-tgl_lahir', true),
+        "alamat"        => $this->input->post('wi-alamat', true),
+        "no_telp"       => $this->input->post('wi-no_telp', true),
+        "email"         => $this->input->post('wi-email', true),
+        "no_npwp"       => $this->input->post('wi-npwp', true),
+        "no_rek"        => $this->input->post('wi-rek', true)
       ];
       $this->db->insert('tb_widyaiswara', $data_wi);
 

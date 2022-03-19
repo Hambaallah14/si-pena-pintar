@@ -52,39 +52,31 @@
                     <?php } ?>
 
                    
-
+                    <?php if($akses_login == "admin"){ ?>
                     <li class="sidebar-item  ">
                         <a href="<?=base_url();?>bagi_kelompok" class='sidebar-link'>
                             <i class="bi bi-people-fill"></i>
                             <span>Pembagian Kelompok</span>
                         </a>
                     </li>
-
+                    <?php } ?>
+                    
+                    <?php if($akses_login == "admin"){ ?>
                     <li class="sidebar-item  ">
                         <a href="<?=base_url();?>pengampu_materi" class='sidebar-link'>
                             <i class="bi bi-book-half"></i>
                             <span>Pengampu Materi</span>
                         </a>
                     </li>
+                    <?php } ?>
 
-                    <li class="sidebar-item  has-sub">
-                        <a href="#" class='sidebar-link'>
+                    <li class="sidebar-item  ">
+                        <a href="<?=base_url();?>jadwal" class='sidebar-link'>
                             <i class="bi bi-calendar-event-fill"></i>
                             <span>Jadwal</span>
                         </a>
-
-                        <ul class="submenu ">
-                            <li class="submenu-item ">
-                                <a href="<?=base_url();?>jadwal_mapel">Mata Pelajaran</a>
-                            </li>
-
-                            <li class="submenu-item ">
-                                <a href="<?=base_url();?>jadwal_dosen">Dosen</a>
-                            </li>
-                        </ul>
                     </li>
-                
-                    
+
                 
                     <!-- <li class="sidebar-title">Forms &amp; Tables</li> -->
                 

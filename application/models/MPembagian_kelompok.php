@@ -79,12 +79,12 @@ class MPembagian_kelompok extends CI_Model{
 
     // PEMBAGIAN PESERTA
     public function allPembagian_peserta($id_kelompok){
-      return $this->db->query("SELECT tb_detail_kelompok.id_kelompok, tb_peserta.nip_peserta, tb_peserta.nama, tb_peserta.instansi, tb_peserta.unit_organisasi FROM tb_detail_kelompok INNER JOIN tb_peserta ON tb_peserta.nip_peserta=tb_detail_kelompok.nip_peserta WHERE tb_detail_kelompok.id_kelompok='$id_kelompok'")->result_array();
+      return $this->db->query("SELECT tb_detail_kelompok.id_kelompok, tb_peserta.nip_peserta, tb_peserta.nama, tb_peserta.unor, tb_instansi.instansi FROM tb_detail_kelompok INNER JOIN tb_peserta ON tb_peserta.nip_peserta=tb_detail_kelompok.nip_peserta INNER JOIN tb_instansi ON tb_instansi.id_instansi=tb_peserta.id_instansi WHERE tb_detail_kelompok.id_kelompok='$id_kelompok'")->result_array();
     }
 
     // MENAMPILKAN DATA YG BELUM TERSIMPAN DI TABEL DETAIL KELOMPOK
-    public function selectPeserta(){
-      return $this->db->query("SELECT * FROM tb_peserta WHERE NOT EXISTS (SELECT * FROM tb_detail_kelompok WHERE tb_peserta.nip_peserta = tb_detail_kelompok.nip_peserta)")->result_array();
+    public function selectPeserta($instansi, $golongan){
+      return $this->db->query("SELECT * FROM tb_peserta WHERE NOT EXISTS (SELECT * FROM tb_detail_kelompok WHERE tb_peserta.nip_peserta = tb_detail_kelompok.nip_peserta) AND tb_peserta.id_instansi = '$instansi' AND tb_peserta.id_gol = '$golongan'")->result_array();
     }
 
     public function allPembagian_kelompok_by_id($id){
@@ -92,11 +92,11 @@ class MPembagian_kelompok extends CI_Model{
     }
 
     public function add_peserta(){
-      $data_peserta = [
-        "id_kelompok"     => $this->input->post('id_kelompok', true),
-        "nip_peserta"     => $this->input->post('peserta', true)
-      ];
-      $this->db->insert('tb_detail_kelompok', $data_peserta);
+      for($i=0; $i < count($this->input->post('kelompok-peserta-check', true)); $i++){
+        $this->db->set('id_kelompok', $this->input->post('id_kelompok', true));
+        $this->db->set('nip_peserta', $this->input->post('kelompok-peserta-check', true)[$i]);
+        $this->db->insert('tb_detail_kelompok');
+      }
     }
 
     public function delete_peserta($nip){

@@ -29,7 +29,7 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Agenda</th>
+                                            <th>Mata Pelatihan</th>
                                             <th>Opsi</th>
                                         </tr>
                                     </thead>

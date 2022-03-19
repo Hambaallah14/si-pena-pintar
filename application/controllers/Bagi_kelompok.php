@@ -9,6 +9,7 @@ Class Bagi_kelompok extends CI_Controller{
 		$this->load->model('MUser');
         $this->load->model('MPembagian_kelompok');
 		$this->load->model('MPelatihan');
+		$this->load->model('MPeserta');
 		if (! $this->session->userdata('logged')) { //cek session
             redirect('login'); //jika tidak ada session maka balek ke menu login
         }
@@ -133,13 +134,12 @@ Class Bagi_kelompok extends CI_Controller{
 
 
 	public function peserta($id_kelompok){
-		$data['title'] 	  	     	= "Pembagian Kelompok - SI Pena Pintar";
+		$data['title'] 	  	     	= "Pembagian Peserta - SI Pena Pintar";
 		$data['id_user'] 		 	= $this->session->userdata('id_user');
         $data['akses_login'] 	 	= $this->session->userdata('akses_login');
 		$data['id_kelompok']     	= $id_kelompok;
 		$data['kelompok']		 	= $this->MPembagian_kelompok->allPembagian_kelompok_by_id($id_kelompok);
 		$data['bagi_peserta']    	= $this->MPembagian_kelompok->allPembagian_peserta($id_kelompok);
-		$data['selectPeserta']   	= $this->MPembagian_kelompok->selectPeserta();
 		$data['user'] 	 		 	= $this->MUser->user_by_iduser($this->session->userdata('id_user'), $this->session->userdata('akses_login'));
 		$this->load->view('kerangka/_1_header-css', $data);
 		$this->load->view('kerangka/_2_sidebar');
@@ -147,22 +147,34 @@ Class Bagi_kelompok extends CI_Controller{
 		$this->load->view('kerangka/_4_footer-js');
 	}
 
-	public function add_peserta(){
-		$data['title'] 	    = "Pembagian Peserta - SI Pena Pintar";
-		$id_kelompok 		= $this->input->post('id_kelompok');
-		$this->form_validation->set_rules('id_kelompok', 'id_kelompok', 'required');
-		$this->form_validation->set_rules('peserta', 'peserta', 'required');
-		if ($this->form_validation->run() == FALSE) {
+	public function tambah_peserta_kelompok($id_kelompok){
+			$data['title'] 	  	     	= "Pembagian Peserta - SI Pena Pintar";
+			$data['id_user'] 		 	= $this->session->userdata('id_user');
+			$data['akses_login'] 	 	= $this->session->userdata('akses_login');
+			$data['id_kelompok']     	= $id_kelompok;
+
+			$data['instansi']		 	= $this->MPeserta->allInstansi();
+			$data['gol']			 	= $this->MPeserta->allGolongan();
+			$data['user'] 	 		 	= $this->MUser->user_by_iduser($this->session->userdata('id_user'), $this->session->userdata('akses_login'));
 			$this->load->view('kerangka/_1_header-css', $data);
 			$this->load->view('kerangka/_2_sidebar');
-			$this->load->view('kelompok/pembagian_peserta');
-			$this->load->view('kerangka/_4_footer-js');
-		}
-		else{
-			$this->MPembagian_kelompok->add_peserta();
-			$this->session->set_flashdata('flash', 'Disimpan');
-			redirect('bagi_kelompok/peserta/'.$id_kelompok);
-		}
+			$this->load->view('kelompok/tambah_peserta');
+			$this->load->view('kerangka/_4_footer-js');	
+	}
+
+	public function selectPeserta(){
+			$instansi   = $this->input->post('instansi');
+			$golongan   = $this->input->post('golongan');
+			$data['peserta'] = $this->MPembagian_kelompok->selectPeserta($instansi, $golongan);
+			$this->load->view('kelompok/hasil-filter-select-peserta', $data);
+	}
+
+	public function add_peserta(){
+		$data['title'] 	    = "Pembagian Peserta - SI Pena Pintar";
+		$id_kelompok 		= $this->input->post('id_kelompok', TRUE);
+		$this->MPembagian_kelompok->add_peserta();
+		$this->session->set_flashdata('flash', 'Disimpan');
+		redirect('bagi_kelompok/peserta/'.$id_kelompok);
 	}
 
 	public function delete_peserta($id_kelompok, $nip_peserta){

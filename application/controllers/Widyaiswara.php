@@ -30,8 +30,13 @@ Class Widyaiswara extends CI_Controller{
 		$this->form_validation->set_rules('wi-nip', 'wi-nip', 'required');
 		$this->form_validation->set_rules('wi-nama', 'wi-nama', 'required');
 		$this->form_validation->set_rules('wi-jabatan', 'wi-jabatan', 'required');
+		$this->form_validation->set_rules('wi-alamat', 'Alamat', 'required');
+		$this->form_validation->set_rules('wi-tempat_lahir', 'Tempat Lahir', 'required');
+		$this->form_validation->set_rules('wi-tgl_lahir', 'Tanggal Lahir', 'required');
 		$this->form_validation->set_rules('wi-no_telp', 'wi-no_telp', 'required');
 		$this->form_validation->set_rules('wi-email', 'wi-email', 'required');
+		$this->form_validation->set_rules('wi-npwp', 'No. NPWP', 'required');
+		$this->form_validation->set_rules('wi-rek', 'No. Rekening', 'required');
         $this->form_validation->set_rules('wi-password', 'wi-password', 'required');
 		if ($this->form_validation->run() == FALSE) {
 			$this->load->view('kerangka/_1_header-css', $data);
