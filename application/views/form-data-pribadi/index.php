@@ -73,8 +73,8 @@
                                                     <div class="form-group">
                                                         <select class="choices form-select peserta-jenis_kelamin" id="peserta-jenis_kelamin" name="peserta-jenis_kelamin">
                                                             <option>--PILIH JENIS KELAMIN--</option>
-                                                            <option value="lk">LAKI-LAKI</option>
-                                                            <option value="pr">PEREMPUAN</option>
+                                                            <option value="Laki-laki">LAKI-LAKI</option>
+                                                            <option value="Perempuan">PEREMPUAN</option>
                                                         </select>
                                                     </div>
                                                 </div>

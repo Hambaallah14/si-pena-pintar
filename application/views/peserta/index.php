@@ -49,7 +49,7 @@
                                                     echo"<td>".$pes["nama"]."</td>";
                                                     echo"<td>".$pes["pelatihan"]."</td>";
                                                     echo"<td>".$pes["instansi"]."</td>";
-                                                    echo"<td>".$pes["unit_organisasi"]."</td>";
+                                                    echo"<td>".$pes["unor"]."</td>";
                                                     if($pes["status_user"]=="aktif"){
                                                         echo"<td><span class='badge bg-success'>Aktif</span></td>";
                                                     }
@@ -101,7 +101,7 @@
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="myModalLabel33">Tambah Data Widyaiswara</h4>
+                        <h4 class="modal-title" id="myModalLabel33">Edit Data Peserta</h4>
                         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                             <i data-feather="x"></i>
                         </button>

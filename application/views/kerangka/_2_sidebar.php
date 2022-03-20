@@ -4,7 +4,7 @@
             <div class="sidebar-header">
                 <div class="d-flex justify-content-between">
                     <div class="logo">
-                        <a href="<?=base_url();?>"><img src="<?=base_url();?>assets/images/si-pena-pintar-logo.png" style="width:100%;height:auto;" srcset=""></a>
+                        <a href="<?=base_url();?>">dashboard<img src="<?=base_url();?>assets/images/si-pena-pintar-logo.png" style="width:100%;height:auto;" srcset=""></a>
                     </div>
                     <div class="toggler">
                         <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
@@ -17,7 +17,7 @@
                     <li class="sidebar-title">Menu</li>
                 
                     <li class="sidebar-item active">
-                        <a href="<?=base_url();?>" class='sidebar-link'>
+                        <a href="<?=base_url();?>dashboard" class='sidebar-link'>
                             <i class="bi bi-grid-fill"></i>
                             <span>Dashboard</span>
                         </a>
@@ -77,7 +77,15 @@
                         </a>
                     </li>
 
-                
+                    <?php if($akses_login == "admin"){ ?>
+                        <li class="sidebar-item  ">
+                        <a href="<?=base_url();?>pengaturan" class='sidebar-link'>
+                            <i class="bi bi-gear-fill"></i>
+                            <span>Pengaturan</span>
+                        </a>
+                    </li>
+                    <?php } ?>
+
                     <!-- <li class="sidebar-title">Forms &amp; Tables</li> -->
                 
                     
@@ -85,7 +93,7 @@
                     <li class="sidebar-item  ">
                         <a href="<?=base_url();?>login/logout" class='sidebar-link'>
                             <i class="bi bi-box-arrow-left"></i>
-                            <span>Logout</span>
+                            <span>Keluar</span>
                         </a>
                     </li>
                 </ul>

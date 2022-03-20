@@ -3,6 +3,10 @@ class MPembagian_kelompok extends CI_Model{
     public function __construct() {
 		parent::__construct(); 
     }
+
+    public function all($nip_peserta){
+      return $this->db->query("SELECT tb_header_batch.batch, tb_detail_batch.angkatan, tb_detail_angkatan.kelompok, tb_detail_kelompok.nip_peserta FROM tb_header_batch INNER JOIN tb_detail_batch ON tb_header_batch.id=tb_detail_batch.id_batch INNER JOIN tb_detail_angkatan ON tb_detail_batch.id_angkatan=tb_detail_angkatan.id_angkatan INNER JOIN tb_detail_kelompok ON tb_detail_kelompok.id_kelompok=tb_detail_angkatan.id_kelompok WHERE tb_detail_kelompok.nip_peserta = '$nip_peserta'")->result_array();
+    }
     
     public function allPembagian_batch(){
       return $this->db->query("SELECT * FROM tb_header_batch")->result_array();

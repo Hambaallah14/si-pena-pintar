@@ -5,7 +5,7 @@ class MPeserta extends CI_Model{
     }
     
     public function allPeserta(){
-      return $this->db->query("SELECT tb_peserta.nip_peserta, tb_peserta.nama, tb_peserta.instansi, tb_peserta.unit_organisasi, tb_login.status_user, tb_pelatihan.pelatihan FROM tb_peserta INNER JOIN tb_login ON tb_peserta.nip_peserta=tb_login.id_user INNER JOIN tb_pelatihan ON tb_pelatihan.id_pelatihan=tb_peserta.id_pelatihan")->result_array();
+      return $this->db->query("SELECT tb_peserta.nip_peserta, tb_peserta.nama, tb_instansi.instansi, tb_peserta.unor, tb_login.status_user, tb_pelatihan.pelatihan FROM tb_peserta INNER JOIN tb_login ON tb_peserta.nip_peserta=tb_login.id_user INNER JOIN tb_pelatihan ON tb_pelatihan.id_pelatihan=tb_peserta.id_pelatihan INNER JOIN tb_instansi ON tb_instansi.id_instansi=tb_peserta.id_instansi")->result_array();
     }
 
     public function allAgama(){
