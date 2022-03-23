@@ -5,13 +5,15 @@ class MMata_pelajaran extends CI_Model{
     }
     
     public function allMapel(){
-      return $this->db->query("SELECT tb_mapel.id_mapel, tb_mapel.mapel, tb_cara_belajar.cara_belajar FROM tb_mapel INNER JOIN tb_cara_belajar ON tb_mapel.id_cara_belajar=tb_cara_belajar.id")->result_array();
+      return $this->db->query("SELECT tb_mapel.id_mapel, tb_mapel.mapel, tb_cara_belajar.cara_belajar, tb_pembelajaran.pembelajaran FROM tb_mapel INNER JOIN tb_cara_belajar ON tb_mapel.id_cara_belajar=tb_cara_belajar.id INNER JOIN tb_pembelajaran ON tb_pembelajaran.id=tb_mapel.id_pembelajaran")->result_array();
     }
 
     public function add(){
       $data_mapel = [
         "mapel"             => $this->input->post('mapel', true),
-        "id_cara_belajar"   => $this->input->post('mapel-metode_belajar', true)
+        "id_cara_belajar"   => $this->input->post('mapel-cara_belajar', true),
+        "id_pembelajaran"   => $this->input->post('mapel-metode_belajar', true),
+        "id_agenda"         => $this->input->post('mapel-agenda', true)
       ];
       $this->db->insert('tb_mapel', $data_mapel);
     }

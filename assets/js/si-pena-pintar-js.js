@@ -211,6 +211,35 @@ $("#kelompok-peserta-btnFilter").on('click', function(){
 	}
 	$('.kelompok-peserta-btnSubmit').css('display', 'block');
 });
-// });
+
+
+// JADWAL PELATIHAN
+$('#jadwal-tahun').on('change', function(){
+	var id_pelatihan = $('#jadwal-pelatihan').val();
+	var tahun        = $(this).val();
+
+	if(id_pelatihan == "" || id_pelatihan == "-"){
+		alert('Pelatihan masih kosong');
+		return false;
+	}
+	else if(tahun == "" || tahun == "-"){
+		alert('Tahun masih kosong');
+		return false;
+	}
+	else{
+		$.ajax({
+			type    : 'POST',
+			url     : 'http://localhost/website/github/aplikasi-si-pena-pintar/jadwal/selectBatch',
+			data    : {id_pelatihan : id_pelatihan, tahun : tahun},
+			success : function(response){
+			  $("#jadwal-batch").html(response);
+			}
+		});
+	}
+
+});
+// END JADWAL PELATIHAN
+
+
 
 

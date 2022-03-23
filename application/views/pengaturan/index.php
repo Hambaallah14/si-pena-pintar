@@ -21,7 +21,7 @@
                 <section class="section">
                     <div class="card">
                         <div class="card-header">
-                            <h5>Durasi Jadwal Pendaftaran</h5>
+                            <h5>Jadwal Pendaftaran</h5>
                         </div>
                         <div class="card-body ">
                             <?php echo form_open("pengaturan/update_jadwal_registrasi", array('enctype'=>'multipart/form-data', 'id' => 'form_validation')); ?>
@@ -50,7 +50,7 @@
 
                     <div class="card">
                         <div class="card-header">
-                            <h5>Durasi Jadwal Pengumuman</h5>
+                            <h5>Jadwal Pengumuman</h5>
                         </div>
                         <div class="card-body ">
                             <?php echo form_open("pengaturan/update_jadwal_pengumuman", array('enctype'=>'multipart/form-data', 'id' => 'form_validation')); ?>

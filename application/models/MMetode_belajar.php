@@ -5,6 +5,6 @@ class MMetode_belajar extends CI_Model{
     }
     
     public function allMetode(){
-      return $this->db->query("SELECT * FROM tb_cara_belajar")->result_array();
+      return $this->db->query("SELECT * FROM tb_pembelajaran")->result_array();
     }
 }

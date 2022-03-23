@@ -31,6 +31,7 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Mata Pelajaran</th>
+                                            <th>Cara Belajar</th>
                                             <th>Metode Belajar</th>
                                             <th>Opsi</th>
                                         </tr>
@@ -43,7 +44,7 @@
                                                     echo"<td>".$no."</td>";
                                                     echo"<td>".$p["mapel"]."</td>";
                                                     echo"<td>".$p["cara_belajar"]."</td>";
-                                                    
+                                                    echo"<td>".$p["pembelajaran"]."</td>";
                                                     echo"<td>";
                                                         echo"<a class='pendamping-btn-edit' href='".base_url()."mata_pelajaran/edit' style='margin-right:10px;' data-bs-toggle='modal' data-bs-target='#inlineForm'>";
                                                             echo"<i class='bi bi-pencil-fill' title='edit'></i>";
@@ -94,22 +95,55 @@
                     <?php echo form_open("mata_pelajaran/add", array('enctype'=>'multipart/form-data', 'id' => 'form_validation')); ?>
                            
                         <div class="modal-body">
-                            <label for="mapel">Mata Pelajaran</label>
-                            <div class="form-group">
-                                <input id="mapel" type="text" placeholder="Mata Pelajaran" class="form-control" name="mapel" required>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <label for="mapel">Mata Pelajaran</label>
+                                    <div class="form-group">
+                                        <input id="mapel" type="text" placeholder="Mata Pelajaran" class="form-control" name="mapel" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="mapel-cara_belajar">Cara Belajar</label>
+                                    <fieldset class="form-group">
+                                    <select class="form-select" id="mapel-cara_belajar" name="mapel-cara_belajar" required>
+                                        <option value="-">--Pilih Cara Belajar--</option>
+                                        <?php
+                                            foreach($cara_belajar as $met){
+                                                echo"<option value='".$met["id"]."'>".$met["cara_belajar"]."</option>";
+                                            }
+                                        ?>
+                                    </select>
+                                    </fieldset>
+                                </div>
                             </div>
-
+                            
                             <label for="mapel-metode_belajar">Metode Belajar</label>
                             <fieldset class="form-group">
-                            <select class="form-select" id="mapel-metode_belajar" name="mapel-metode_belajar">
-                                <option value="-">--Pilih Metode Belajar--</option>
-                                <?php
-                                    foreach($metode_belajar as $met){
-                                        echo"<option value='".$met["id"]."'>".$met["cara_belajar"]."</option>";
-                                    }
-                                ?>
-                            </select>
+                                <select class="form-select" id="mapel-metode_belajar" name="mapel-metode_belajar" required>
+                                    <option value="-">--Pilih Metode Belajar--</option>
+                                    <?php
+                                        foreach($metode_belajar as $met){
+                                            echo"<option value='".$met["id"]."'>".$met["pembelajaran"]."</option>";
+                                        }
+                                    ?>
+                                </select>
                             </fieldset>
+
+                            <label for="mapel-agenda">Agenda</label>
+                            <fieldset class="form-group">
+                                <select class="form-select" id="mapel-agenda" name="mapel-agenda" required>
+                                    <option value="-">--Pilih Agenda--</option>
+                                    <?php
+                                        foreach($agenda as $met){
+                                            echo"<option value='".$met["id_agenda"]."'>".$met["agenda"]."</option>";
+                                        }
+                                    ?>
+                                </select>
+                            </fieldset>
+                           
+                            
+
+                            
                         </div>
                         
                         <div class="modal-footer">
