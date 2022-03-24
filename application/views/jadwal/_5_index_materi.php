@@ -1,5 +1,5 @@
 <!-- WARNING -->
-<div class="flash-data" data-target="Jadwal Tanggal" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
+<div class="flash-data" data-target="Jadwal Materi" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
 <!-- END WARNING -->
 
         <div id="main-content">
@@ -32,28 +32,30 @@
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>Tanggal</th>
+                                                <th>Agenda</th>
+                                                <th>Materi</th>
                                                 <th>Opsi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
                                                 $no = 1;
-                                                foreach($header_jadwal_tanggal as $p){
+                                                foreach($header_jadwal_materi as $p){
                                                     echo"<tr>";
                                                         echo"<td>".$no."</td>";
-                                                        echo"<td>".date('d F Y', strtotime($p['tanggal']))."</td>";
+                                                        echo"<td>".$p["agenda"]."</td>";
+                                                        echo"<td>".$p["mapel"]."</td>";
                                                         echo"<td>";
                                                             echo"<a class='penceramah-btn-edit' href='".base_url()."jadwal/edit' style='margin-right:10px;'>";
                                                                 echo"<i class='bi bi-pencil-fill' title='edit'></i>";
                                                             echo"</a>";
 
-                                                            echo"<a class='btn-delete' href='".base_url()."jadwal/hapus_jadwal_tanggal/".$idJadwal."/".$p["id_tanggal"]."' style='margin-right:10px;'>";
+                                                            echo"<a class='btn-delete' href='".base_url()."jadwal/hapus_jadwal_materi/".$idTanggal."/".$p["id_j_m"]."' style='margin-right:10px;'>";
                                                                 echo"<i class='bi bi-trash-fill' title='delete'></i>";
                                                             echo"</a>";
 
-                                                            echo"<a class='' href='".base_url()."jadwal/jadwal_materi/".$idJadwal."/".$idBatch."/".$p["id_tanggal"]."' style='margin-right:10px;'>";
-                                                                echo"<i class='bi bi-journal-plus' title='Jadwal Materi'></i>";
+                                                            echo"<a class='' href='".base_url()."jadwal/jadwal_pengajar/".$idJadwal."/".$idBatch."/".$idTanggal."/".$p["id_j_m"]."' style='margin-right:10px;'>";
+                                                                echo"<i class='bi bi-journal-plus' title='Jadwal Pengajar'></i>";
                                                             echo"</a>";
                                                         echo"</td>";
                                                     echo"</tr>";

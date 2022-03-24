@@ -74,14 +74,18 @@ Class Jadwal extends CI_Controller{
 		}
 	}
 
-	public function jadwal_tanggal($id_jadwal){
+
+	// JADWAL TANGGAL PELATIHAN
+	public function jadwal_tanggal($id_jadwal, $id_batch){
 		$data['title'] 	 		    	 	 = "Jadwal Pelatihan - SI Pena Pintar";
 		$data['id_user'] 		    	 	 = $this->session->userdata('id_user');
 		$data['akses_login'] 	    	 	 = $this->session->userdata('akses_login');
 		$data['user'] 	 		    	 	 = $this->MUser->user_by_iduser($this->session->userdata('id_user'), $this->session->userdata('akses_login'));
 		$data['jadwal_pengumuman']  	 	 = $this->MJadwal->jadwal_pengumuman();
 		$data['pembagian_kelompok'] 		 = $this->MPembagian_kelompok->all($this->session->userdata('id_user'));
-		$data['tambah_tanggal_pelatihan'] 	 = $this->MJadwalPelatihan->jadwal_tanggal($id_jadwal);
+		$data['idJadwal']					 = $id_jadwal;
+		$data['idBatch']					 = $id_batch;
+		$data['header_jadwal_tanggal']  	 = $this->MJadwalPelatihan->jadwal_tanggal($id_jadwal);
 			$this->load->view('kerangka/_1_header-css', $data);
 			$this->load->view('kerangka/_2_sidebar');
 			$this->load->view('jadwal/_4_index_tanggal');
@@ -89,10 +93,50 @@ Class Jadwal extends CI_Controller{
 	}
 
 
-	public function hapus_jadwal_tanggal($id_tanggal){
-		$this->MJadwalPelatihan->deleteJadwalPelatihan($id_jadwal);
+	public function addJadwalTanggal(){
+		$data['title'] 	  	    = "Tambah Jadwal - SI Pena Pintar";
+		$id_jadwal				= $this->input->post('tanggal-id_jadwal', TRUE);
+		$this->form_validation->set_rules('tanggal-id_jadwal', 'tanggal-id_jadwal', 'required');
+		$this->form_validation->set_rules('tanggal', 'tanggal', 'required');
+		
+		if ($this->form_validation->run() == FALSE) {
+			$this->load->view('kerangka/_1_header-css', $data);
+			$this->load->view('kerangka/_2_sidebar');
+			$this->load->view('jadwal/_4_index_tanggal');
+			$this->load->view('kerangka/_4_footer-js');
+		}
+		else{
+			$this->MJadwalPelatihan->addJadwalTanggal();
+			$this->session->set_flashdata('flash', 'Disimpan');
+			redirect('jadwal/jadwal_tanggal/'.$id_jadwal);
+		}
+	}
+
+
+	public function hapus_jadwal_tanggal($id_jadwal, $id_tanggal){
+		$this->MJadwalPelatihan->deleteJadwalTanggal($id_tanggal);
 		$this->session->set_flashdata('flash', 'Dihapus');
-		redirect('jadwal');
+		redirect('jadwal/jadwal_tanggal/'.$id_jadwal);
+	}
+
+
+
+	// JADWAL MATERI
+	public function jadwal_materi($id_jadwal, $id_batch, $id_tanggal){
+		$data['title'] 	 		    	 	 = "Jadwal Pelatihan - SI Pena Pintar";
+		$data['id_user'] 		    	 	 = $this->session->userdata('id_user');
+		$data['akses_login'] 	    	 	 = $this->session->userdata('akses_login');
+		$data['user'] 	 		    	 	 = $this->MUser->user_by_iduser($this->session->userdata('id_user'), $this->session->userdata('akses_login'));
+		$data['jadwal_pengumuman']  	 	 = $this->MJadwal->jadwal_pengumuman();
+		$data['pembagian_kelompok'] 		 = $this->MPembagian_kelompok->all($this->session->userdata('id_user'));
+		$data['idJadwal']					 = $id_jadwal;
+		$data['idBatch']					 = $id_batch;
+		$data['idTanggal']					 = $id_tanggal;
+		$data['header_jadwal_materi']   	 = $this->MJadwalPelatihan->jadwal_materi($id_tanggal);
+			$this->load->view('kerangka/_1_header-css', $data);
+			$this->load->view('kerangka/_2_sidebar');
+			$this->load->view('jadwal/_5_index_materi');
+			$this->load->view('kerangka/_4_footer-js');
 	}
 }
  ?>

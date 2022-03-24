@@ -58,7 +58,7 @@
                                                                 echo"<i class='bi bi-trash-fill' title='delete'></i>";
                                                             echo"</a>";
 
-                                                            echo"<a class='' href='".base_url()."jadwal/jadwal_tanggal/".$p["id_jadwal"]."' style='margin-right:10px;'>";
+                                                            echo"<a class='' href='".base_url()."jadwal/jadwal_tanggal/".$p["id_jadwal"]."/".$p["id_batch"]."' style='margin-right:10px;'>";
                                                                 echo"<i class='bi bi-calendar-plus-fill' title='Jadwal Tanggal'></i>";
                                                             echo"</a>";
                                                         echo"</td>";
