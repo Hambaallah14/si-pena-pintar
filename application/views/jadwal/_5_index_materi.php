@@ -23,7 +23,7 @@
                     <?php if($akses_login == "admin"){ ?>
                         <div class="card">
                             <div class="card-header">
-                                <button type="button" class="btn btn-primary penceramah-btn-tambah" data-bs-toggle="modal" data-bs-target="#inlineForm">Tambah Data</button>
+                                <a href="<?=base_url();?>jadwal/tambah_jadwal_materi/<?=$idJadwal."/".$idBatch."/".$idTanggal;?>" class="btn btn-primary">Tambah Data</a>
                             </div>
 
                             <div class="card-body px-3 py-4-5">
@@ -44,17 +44,17 @@
                                                     echo"<tr>";
                                                         echo"<td>".$no."</td>";
                                                         echo"<td>".$p["agenda"]."</td>";
-                                                        echo"<td>".$p["mapel"]."</td>";
+                                                        echo"<td>".$p["cara_belajar"]." - ".$p["mapel"]."</td>";
                                                         echo"<td>";
                                                             echo"<a class='penceramah-btn-edit' href='".base_url()."jadwal/edit' style='margin-right:10px;'>";
                                                                 echo"<i class='bi bi-pencil-fill' title='edit'></i>";
                                                             echo"</a>";
 
-                                                            echo"<a class='btn-delete' href='".base_url()."jadwal/hapus_jadwal_materi/".$idTanggal."/".$p["id_j_m"]."' style='margin-right:10px;'>";
+                                                            echo"<a class='btn-delete' href='".base_url()."jadwal/hapus_jadwal_materi/".$p["id_j_m"]."/".$idJadwal."/".$idBatch."/".$idTanggal."' style='margin-right:10px;'>";
                                                                 echo"<i class='bi bi-trash-fill' title='delete'></i>";
                                                             echo"</a>";
 
-                                                            echo"<a class='' href='".base_url()."jadwal/jadwal_pengajar/".$idJadwal."/".$idBatch."/".$idTanggal."/".$p["id_j_m"]."' style='margin-right:10px;'>";
+                                                            echo"<a class='' href='".base_url()."jadwal/jadwal_pengajar/".$idJadwal."/".$idBatch."/".$idTanggal."/".$p["id_j_m"]."/".$p["id_agenda"]."/".$p["id_mapel"]."' style='margin-right:10px;'>";
                                                                 echo"<i class='bi bi-journal-plus' title='Jadwal Pengajar'></i>";
                                                             echo"</a>";
                                                         echo"</td>";
@@ -93,12 +93,12 @@
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="myModalLabel33">Tambah Data Mata Pelajaran</h4>
+                        <h4 class="modal-title" id="myModalLabel33">Tambah Data Materi</h4>
                         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                             <i data-feather="x"></i>
                         </button>
                     </div>
-                    <?php echo form_open("jadwal/addJadwalTanggal", array('enctype'=>'multipart/form-data', 'id' => 'form_validation')); ?>
+                    <?php echo form_open("jadwal/addJadwalMateri", array('enctype'=>'multipart/form-data', 'id' => 'form_validation')); ?>
                            
                         <div class="modal-body">
                             

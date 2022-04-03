@@ -5,13 +5,13 @@ class MWidyaiswara extends CI_Model{
     }
     
     public function allWidyaiswara(){
-      return $this->db->query("SELECT tb_widyaiswara.nip_wi, tb_widyaiswara.nama, tb_widyaiswara.jabatan, tb_widyaiswara.no_telp, tb_widyaiswara.email, tb_login.status_user FROM tb_widyaiswara INNER JOIN tb_login ON tb_widyaiswara.nip_wi=tb_login.id_user")->result_array();
+      return $this->db->query("SELECT tb_widyaiswara.nip_wi, tb_widyaiswara.nama_wi, tb_widyaiswara.jabatan, tb_widyaiswara.no_telp, tb_widyaiswara.email, tb_login.status_user FROM tb_widyaiswara INNER JOIN tb_login ON tb_widyaiswara.nip_wi=tb_login.id_user")->result_array();
     }
 
     public function add(){
       $data_wi = [
         "nip_wi"        => $this->input->post('wi-nip', true),
-        "nama"          => $this->input->post('wi-nama', true),
+        "nama_wi"       => $this->input->post('wi-nama', true),
         "jabatan"       => $this->input->post('wi-jabatan', true),
         "tempat_lahir"  => $this->input->post('wi-tempat_lahir', true),
         "tgl_lahir"     => $this->input->post('wi-tgl_lahir', true),
@@ -46,7 +46,7 @@ class MWidyaiswara extends CI_Model{
     public function edit_pribadi(){
       // tb_widyaiswara
       $data_edit = [
-        "nama"        => $this->input->post('wi-nama', true),
+        "nama_wi"        => $this->input->post('wi-nama', true),
         "jabatan"     => $this->input->post('wi-jabatan', true),
         "no_telp"     => $this->input->post('wi-no_telp', true),
         "email"       => $this->input->post('wi-email', true)

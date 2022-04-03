@@ -238,6 +238,54 @@ $('#jadwal-tahun').on('change', function(){
 	}
 
 });
+
+
+$('#jadwal-agenda-materi').on('change', function(){
+	var id_agenda = $('#jadwal-agenda-materi').val();
+
+	if(id_agenda == "" || id_agenda == "-"){
+		alert('Pilih Agenda terlebih dahulu');
+		return false;
+	}
+	
+	else{
+		$.ajax({
+			type    : 'POST',
+			url     : 'http://localhost/website/github/aplikasi-si-pena-pintar/jadwal/selectMateri',
+			data    : {id_agenda : id_agenda},
+			success : function(response){
+			  $("#jadwal-materi").html(response);
+			}
+		});
+	}
+
+});
+
+
+$('#btn-filter-tgl').on('click', function(){
+	var id_tanggal = $('#id_tanggal').val();
+	var materi 	   = $('#id_mapel').val();
+	var mulai 	   = $('#jadwal-pengajar-waktu-mulai').val();
+	var selesai    = $('#jadwal-pengajar-waktu-selesai').val();
+
+	$.ajax({
+		type    : 'POST',
+		url     : 'http://localhost/website/github/aplikasi-si-pena-pintar/jadwal/selectPembimbing',
+		data    : {id_tanggal : id_tanggal, materi:materi, mulai : mulai, selesai : selesai},
+		success : function(response){
+		  $("#jadwal-pengajar-pembimbing").html(response);
+		}
+	});
+
+	$.ajax({
+		type    : 'POST',
+		url     : 'http://localhost/website/github/aplikasi-si-pena-pintar/jadwal/selectPendamping',
+		data    : {id_tanggal : id_tanggal, mulai : mulai, selesai : selesai},
+		success : function(response){
+		  $("#jadwal-pengajar-pendamping").html(response);
+		}
+	});
+});
 // END JADWAL PELATIHAN
 
 

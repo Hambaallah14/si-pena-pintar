@@ -108,4 +108,11 @@ class MPembagian_kelompok extends CI_Model{
       $this->db->where('nip_peserta', $nip);
       $this->db->delete('tb_detail_kelompok');
     }
+
+
+
+    //
+    public function selectAngkatan($id_batch, $id_tanggal, $id_mapel){
+      return $this->db->query("SELECT * FROM tb_detail_batch WHERE NOT EXISTS (SELECT tb_header_jadwal_pengajar.id_j_m, tb_header_jadwal_pengajar.id_angkatan, tb_header_jadwal_tanggal.id_tanggal FROM tb_header_jadwal_pengajar INNER JOIN tb_header_jadwal_materi ON tb_header_jadwal_pengajar.id_j_m=tb_header_jadwal_materi.id_j_m INNER JOIN tb_header_jadwal_tanggal ON tb_header_jadwal_materi.id_tanggal=tb_header_jadwal_tanggal.id_tanggal WHERE tb_header_jadwal_pengajar.id_angkatan = tb_detail_batch.id_angkatan AND tb_header_jadwal_tanggal.id_tanggal = '$id_tanggal' AND tb_header_jadwal_materi.id_materi='$id_mapel') AND tb_detail_batch.id_batch = '$id_batch' ")->result_array();
+    }
 }

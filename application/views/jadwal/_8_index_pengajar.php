@@ -1,5 +1,5 @@
 <!-- WARNING -->
-<div class="flash-data" data-target="Jadwal Tanggal" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
+<div class="flash-data" data-target="Jadwal Pengajar" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
 <!-- END WARNING -->
 
         <div id="main-content">
@@ -23,7 +23,7 @@
                     <?php if($akses_login == "admin"){ ?>
                         <div class="card">
                             <div class="card-header">
-                                <button type="button" class="btn btn-primary penceramah-btn-tambah" data-bs-toggle="modal" data-bs-target="#inlineForm">Tambah Data</button>
+                                <a href="<?=base_url();?>jadwal/tambah_jadwal_pengajar/<?=$idJadwal."/".$idBatch."/".$idTanggal."/".$idMateri."/".$idAgenda."/".$idMapel;?>" class="btn btn-primary">Tambah Data</a>
                             </div>
 
                             <div class="card-body px-3 py-4-5">
@@ -32,29 +32,42 @@
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>Tanggal</th>
+                                                <th>Angkatan</th>
+                                                <th>Sesi</th>
+                                                <th>Room</th>
+                                                <th>Waktu</th>
+                                                <th>Jam Pelajaran</th>
+                                                <th>Pembimbing</th>
+                                                <th>Pendamping</th>
                                                 <th>Opsi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
                                                 $no = 1;
-                                                foreach($header_jadwal_tanggal as $p){
+                                                foreach($header_jadwal_pengajar as $p){
+                                                    $akhir = strtotime($p["waktu_selesai"]);
+                                                    $awal  = strtotime($p["waktu_mulai"]);
+                                                    $diff  = $akhir - $awal;
+                                                    $jam   = floor(($diff/(60))/45);
                                                     echo"<tr>";
                                                         echo"<td>".$no."</td>";
-                                                        echo"<td>".date('d F Y', strtotime($p['tanggal']))."</td>";
+                                                        echo"<td>".$p["angkatan"]."</td>";
+                                                        echo"<td>".$p["sesi"]."</td>";
+                                                        echo"<td>".$p["zoom"]."</td>";
+                                                        echo"<td>".date('H:i', strtotime($p['waktu_mulai']))." - ".date('h:i', strtotime($p['waktu_selesai']))."</td>";
+                                                        echo"<td class='text-center'>".$jam." JP</td>";
+                                                        echo"<td>".$p["nama_wi"]."</td>";
+                                                        echo"<td>".$p["nama"]."</td>";
                                                         echo"<td>";
                                                             echo"<a class='penceramah-btn-edit' href='".base_url()."jadwal/edit' style='margin-right:10px;'>";
                                                                 echo"<i class='bi bi-pencil-fill' title='edit'></i>";
                                                             echo"</a>";
 
-                                                            echo"<a class='btn-delete' href='".base_url()."jadwal/hapus_jadwal_tanggal/".$idJadwal."/".$p["id_tanggal"]."' style='margin-right:10px;'>";
+                                                            echo"<a class='btn-delete' href='".base_url()."jadwal/hapus_jadwal_pengajar/".$idJadwal."/".$idBatch."/".$idTanggal."/".$p["id_j_m"]."/".$idAgenda."/".$idMapel."/".$p["id_j_p"]."' style='margin-right:10px;'>";
                                                                 echo"<i class='bi bi-trash-fill' title='delete'></i>";
                                                             echo"</a>";
 
-                                                            echo"<a class='' href='".base_url()."jadwal/jadwal_materi/".$idJadwal."/".$idBatch."/".$p["id_tanggal"]."' style='margin-right:10px;'>";
-                                                                echo"<i class='bi bi-journal-plus' title='Jadwal Materi'></i>";
-                                                            echo"</a>";
                                                         echo"</td>";
                                                     echo"</tr>";
                                                     $no++;
@@ -91,17 +104,16 @@
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="myModalLabel33">Tambah Data Mata Pelajaran</h4>
+                        <h4 class="modal-title" id="myModalLabel33">Tambah Data Materi</h4>
                         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                             <i data-feather="x"></i>
                         </button>
                     </div>
-                    <?php echo form_open("jadwal/addJadwalTanggal", array('enctype'=>'multipart/form-data', 'id' => 'form_validation')); ?>
+                    <?php echo form_open("jadwal/addJadwalMateri", array('enctype'=>'multipart/form-data', 'id' => 'form_validation')); ?>
                            
                         <div class="modal-body">
                             
                             <input id="tanggal-id_jadwal" type="hidden" class="form-control" name="tanggal-id_jadwal" value="<?= $idJadwal; ?>">
-                            <input id="tanggal-id_batch" type="hidden" class="form-control" name="tanggal-id_batch" value="<?= $idBatch; ?>">
                             <label for="tanggal">Tanggal</label>
                             <div class="form-group">
                                 <input id="tanggal" type="date" class="form-control" name="tanggal" required>

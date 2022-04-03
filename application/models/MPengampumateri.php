@@ -26,7 +26,7 @@ class MPengampumateri extends CI_Model{
 
     // WIDYAISWARA
     public function allPengampu($id_agenda){
-      return $this->db->query("SELECT tb_detail_agenda.id_agenda, tb_detail_agenda.nip_wi, tb_widyaiswara.nama FROM tb_detail_agenda INNER JOIN tb_widyaiswara ON tb_widyaiswara.nip_wi=tb_detail_agenda.nip_wi WHERE tb_detail_agenda.id_agenda = '$id_agenda'")->result_array();
+      return $this->db->query("SELECT tb_detail_agenda.id_agenda, tb_detail_agenda.nip_wi, tb_widyaiswara.nama_wi FROM tb_detail_agenda INNER JOIN tb_widyaiswara ON tb_widyaiswara.nip_wi=tb_detail_agenda.nip_wi WHERE tb_detail_agenda.id_agenda = '$id_agenda'")->result_array();
     }
 
     public function add_widyaiswara(){

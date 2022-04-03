@@ -75,22 +75,6 @@
                     <?php } ?>
 
                     <?php if($akses_login == "peserta"){ ?>
-                        <?php if($jadwal_pengumuman[0]["tgl_jadwal"] <= date('Y-m-d')){ ?> <!--Jika Jadwal Pengumuman lebih kecil dari tanggal berjalan-->
-                            <?php
-                                $batch          = $pembagian_kelompok[0]["batch"];
-                                $angkatan       = $pembagian_kelompok[0]["angkatan"];
-                                $kelompok       = $pembagian_kelompok[0]["kelompok"];
-                                $metode_belajar = $header_jadwal_pelatihan[0]["metode"];
-                            ?>
-                        <?php }else{ ?>
-                            <?php
-                                $batch          = "BELUM DIJADWALKAN (PENDING)";
-                                $angkatan       = "BELUM DIJADWALKAN (PENDING)";
-                                $kelompok       = "BELUM DIJADWALKAN (PENDING)";
-                                $metode_belajar = "BELUM DIJADWALKAN (PENDING)";
-                            ?>
-                        <?php } ?>
-                        
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card">
@@ -103,16 +87,44 @@
                                                         <th>Tanggal</th>
                                                         <th>Sesi</th>
                                                         <th>Waktu</th>
-                                                        <th>Agenda</th>
                                                         <th>Materi</th>
                                                         <th>JP</th>
+                                                        <th>Metode</th>
                                                         <th>Room</th>
                                                         <th>Pengajar</th>
+                                                        <th>Pendamping</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <?php
-                                                        $no = 1;
+                                                        
+                                                        if($jadwal_pengumuman[0]["tgl_jadwal"] <= date('Y-m-d')){
+                                                            $no = 1;
+                                                            foreach($jadwal_pelatihan as $jp){
+                                                                $akhir = strtotime($jp["waktu_selesai"]);
+                                                                $awal  = strtotime($jp["waktu_mulai"]);
+                                                                $diff  = $akhir - $awal;
+                                                                $jam   = floor(($diff/(60))/45);
+                                                                echo"<tr>";
+                                                                    echo"<td>".$no."</td>";
+                                                                    echo"<td>".date('d F Y', strtotime($jp['tanggal']))."</td>";
+                                                                    echo"<td>".$jp["sesi"]."</td>";
+                                                                    echo"<td>".date('H:i', strtotime($jp['waktu_mulai']))." - ".date('h:i', strtotime($jp['waktu_selesai']))."</td>";
+                                                                    echo"<td>".$jp["cara_belajar"]." ".$jp["mapel"]."</td>";
+                                                                    echo"<td>".$jam."</td>";
+                                                                    echo"<td>".$jp["pembelajaran"]."</td>";
+                                                                    echo"<td>".$jp["zoom"]."</td>";
+                                                                    echo"<td>".$jp["nama_wi"]."</td>";
+                                                                    echo"<td>".$jp["nama"]."</td>";
+                                                                echo"</tr>";
+                                                                $no++;
+                                                            }
+                                                        }
+                                                        else{
+                                                            echo"<tr>";
+                                                                echo"<td colspan='9'>Data Belum ada</td>";
+                                                            echo"</tr>";
+                                                        }
                                                         
                                                     ?>
                                                 </tbody>

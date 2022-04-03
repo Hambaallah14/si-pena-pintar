@@ -44,7 +44,7 @@
                                                 echo"<tr>";
                                                     echo"<td>".$no."</td>";
                                                     echo"<td>".$wi["nip_wi"]."</td>";
-                                                    echo"<td>".$wi["nama"]."</td>";
+                                                    echo"<td>".$wi["nama_wi"]."</td>";
                                                     echo"<td>".$wi["jabatan"]."</td>";
                                                     if($wi["status_user"]=="aktif"){
                                                         echo"<td><span class='badge bg-success'>Aktif</span></td>";
@@ -58,7 +58,7 @@
                                                             echo"<i class='iconly-boldShow' title='views'></i>";
                                                         echo"</a>";
 
-                                                        echo"<a class='wi-btn-edit' href='".base_url()."widyaiswara/edit' style='margin-right:10px;' data-bs-toggle='modal' data-bs-target='#inlineForm' data-nip_wi='".$wi["nip_wi"]."' data-nama_wi='".$wi["nama"]."' data-jabatan_wi='".$wi["jabatan"]."' data-no_telp_wi='".$wi["no_telp"]."' data-email_wi='".$wi["email"]."' data-status_user_wi='".$wi["status_user"]."'>";
+                                                        echo"<a class='wi-btn-edit' href='".base_url()."widyaiswara/edit' style='margin-right:10px;' data-bs-toggle='modal' data-bs-target='#inlineForm' data-nip_wi='".$wi["nip_wi"]."' data-nama_wi='".$wi["nama_wi"]."' data-jabatan_wi='".$wi["jabatan"]."' data-no_telp_wi='".$wi["no_telp"]."' data-email_wi='".$wi["email"]."' data-status_user_wi='".$wi["status_user"]."'>";
                                                             echo"<i class='bi bi-pencil-fill' title='edit'></i>";
                                                         echo"</a>";
 

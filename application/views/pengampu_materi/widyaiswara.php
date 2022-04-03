@@ -42,7 +42,7 @@
                                                 echo"<tr>";
                                                     echo"<td>".$no."</td>";
                                                     echo"<td>".$p["nip_wi"]."</td>";
-                                                    echo"<td>".$p["nama"]."</td>";
+                                                    echo"<td>".$p["nama_wi"]."</td>";
                                                     echo"<td>";
                                                         echo"<a class='pendamping-btn-edit' href='".base_url()."pengampu_materi/edit' style='margin-right:10px;' data-bs-toggle='modal' data-bs-target='#inlineForm'>";
                                                             echo"<i class='bi bi-pencil-fill' title='edit'></i>";
@@ -101,7 +101,7 @@
                                     <option value="-">--Pilih Widyaiswara--</option>
                                     <?php
                                         foreach($selectWidyaiswara as $pel){
-                                            echo"<option value='".$pel['nip_wi']."'>".$pel['nama']."</option>";
+                                            echo"<option value='".$pel['nip_wi']."'>".$pel['nama_wi']."</option>";
                                         }
                                     ?>
                                 </select>
