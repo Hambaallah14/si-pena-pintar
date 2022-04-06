@@ -68,6 +68,10 @@
     <!-- CHART -->
     <link rel="stylesheet" href="<?=base_url();?>assets/vendors/chartjs/Chart.min.css">
     <!-- END CHART -->
+
+
+    <!-- STYLE CSS -->
+    <script src="<?=base_url();?>assets/css/si-pena-pintar-css.css"></script>
 </head>
 
 <body>

@@ -18,6 +18,8 @@
             <!-- SELECT CHOICES -->
             <link rel="stylesheet" href="<?=base_url();?>assets/vendors/choices.js/choices.min.css" />
             <!-- END SELECT CHOICES -->
+
+            <script src="<?=base_url();?>assets/css/si-pena-pintar-css.css"></script>
         </head>
 
         <body>
@@ -74,8 +76,9 @@
                     </div>
                     <div class="col-lg-7 d-none d-lg-block">
                         <div id="auth-right">
-                                <div style="padding-top:250px;padding-left:50px;">
-                                    <h2 class="text-light mx-auto">Selamat datang di Aplikasi SI PENA PINTAR untuk mendukung <strong>SI BERMARTABAT<strong></h2>
+                                <img src="<?=base_url();?>assets/images/background.jpg" height>
+                                <div style="margin-top:-500px; padding-left:40px;">
+                                    <h2 class="text-success">Selamat datang di Aplikasi SI PENA PINTAR untuk mendukung <strong>SI BERMARTABAT<strong></h2>
                                 </div>
                         </div>
                     </div>
