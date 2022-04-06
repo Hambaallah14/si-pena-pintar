@@ -1,5 +1,5 @@
 <!-- WARNING -->
-<div class="flash-data" data-target="Data Diri Pegawai" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
+<div class="flash-data" data-target="Data Diri Peserta" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
 <!-- END WARNING -->
 
         <div id="main-content">
@@ -16,7 +16,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="row">
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <div class="card">
                                             <div class="card-body px-3 py-4-5">
                                                 <div class="row">
@@ -27,14 +27,14 @@
                                                     </div>
                                                     <div class="col-md-8">
                                                         <h6 class="text-muted font-semibold">Widyaiswara</h6>
-                                                        <h6 class="font-extrabold mb-0">183.000 Orang</h6>
+                                                        <h6 class="font-extrabold mb-0"><?=$jumlah_wi;?> Orang</h6>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <div class="card">
                                             <div class="card-body px-3 py-4-5">
                                                 <div class="row">
@@ -45,13 +45,13 @@
                                                     </div>
                                                     <div class="col-md-8">
                                                         <h6 class="text-muted font-semibold">Pendamping</h6>
-                                                        <h6 class="font-extrabold mb-0">183.000 Orang</h6>
+                                                        <h6 class="font-extrabold mb-0"><?=$jumlah_pendamping;?> Orang</h6>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <div class="card">
                                             <div class="card-body px-3 py-4-5">
                                                 <div class="row">
@@ -61,25 +61,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-8">
-                                                        <h6 class="text-muted font-semibold">Peserta</h6>
-                                                        <h6 class="font-extrabold mb-0">183.000 ORANG</h6>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="card">
-                                            <div class="card-body px-3 py-4-5">
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        <div class="stats-icon purple">
-                                                            <i class="iconly-boldProfile"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-8">
-                                                        <h6 class="text-muted font-semibold">Followers</h6>
-                                                        <h6 class="font-extrabold mb-0">183.000</h6>
+                                                        <h6 class="text-muted font-semibold">Penceramah</h6>
+                                                        <h6 class="font-extrabold mb-0"><?=$jumlah_penceramah;?> Orang</h6>
                                                     </div>
                                                 </div>
                                             </div>
@@ -108,6 +91,13 @@
                         
                         <div class="row">
                             <div class="col-md-12">
+                                <?php if($akses_login == "widyaiswara"){
+                                     echo"<div class='alert alert-success'>SELAMAT DATANG <strong>".$user[0]["nama_wi"]."</strong></div>";
+                                }
+                                else{
+                                    echo"<div class='alert alert-success'>SELAMAT DATANG <strong>".$user[0]["nama"]."</strong></div>";
+                                }
+                                ?>
                                 <div class="card">
                                     <div class="card-body px-3 py-4-5">
                                         <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -247,6 +237,23 @@
                             </div>
                         </div>
                         
+                    <?php } ?>
+                    <?php if($akses_login == "widyaiswara"){ ?>
+                        <?php if($jadwal_pengumuman[0]["tgl_jadwal"] <= date('Y-m-d')){ ?> <!--Jika Jadwal Pengumuman lebih kecil dari tanggal berjalan-->
+                            
+                        <?php } ?>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <?php if($akses_login == "widyaiswara"){
+                                     echo"<div class='alert alert-success'>SELAMAT DATANG <strong>".$user[0]["nama_wi"]."</strong></div>";
+                                }
+                                else{
+                                    echo"<div class='alert alert-success'>SELAMAT DATANG <strong>".$user[0]["nama"]."</strong></div>";
+                                }
+                                ?>
+                            </div>
+                        </div>
                     <?php } ?>
                 </section>
             </div>

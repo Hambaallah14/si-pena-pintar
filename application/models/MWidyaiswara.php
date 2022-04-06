@@ -3,6 +3,7 @@ class MWidyaiswara extends CI_Model{
     public function __construct() {
 		parent::__construct(); 
     }
+
     
     public function allWidyaiswara(){
       return $this->db->query("SELECT tb_widyaiswara.nip_wi, tb_widyaiswara.nama_wi, tb_widyaiswara.jabatan, tb_widyaiswara.no_telp, tb_widyaiswara.email, tb_login.status_user FROM tb_widyaiswara INNER JOIN tb_login ON tb_widyaiswara.nip_wi=tb_login.id_user")->result_array();

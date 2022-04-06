@@ -38,7 +38,8 @@ class MPengampumateri extends CI_Model{
     }
 
     public function selectWidyaiswara(){
-      return $this->db->query("SELECT * FROM tb_widyaiswara WHERE NOT EXISTS (SELECT * FROM tb_detail_agenda WHERE tb_widyaiswara.nip_wi = tb_detail_agenda.nip_wi)")->result_array();
+      return $this->db->query("SELECT * FROM tb_widyaiswara")->result_array();
+      // return $this->db->query("SELECT * FROM tb_widyaiswara WHERE NOT EXISTS (SELECT * FROM tb_detail_agenda WHERE tb_widyaiswara.nip_wi = tb_detail_agenda.nip_wi)")->result_array();
     }
 
     public function delete_wi($nip_wi){

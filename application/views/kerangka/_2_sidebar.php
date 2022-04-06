@@ -114,7 +114,13 @@
                             <a href="#" data-bs-toggle="dropdown" aria-expanded="false">
                                 <div class="user-menu d-flex">
                                     <div class="user-name text-end me-3">
-                                        <h6 class="mb-0 text-gray-600"><?=$user[0]['nama']?></h6>
+                                        <?php if($akses_login == "widyaiswara"){
+                                            echo"<h6 class='mb-0 text-gray-600'>".$user[0]["nama_wi"]."</h6>";
+                                        }
+                                        else{
+                                            echo"<h6 class='mb-0 text-gray-600'>".$user[0]["nama"]."</h6>";
+                                        }
+                                        ?>
                                         <p class="mb-0 text-sm text-gray-600"><?= $id_user; ?></p>
                                     </div>
                                     <div class="user-img d-flex align-items-center">

@@ -74,7 +74,9 @@
                     </div>
                     <div class="col-lg-7 d-none d-lg-block">
                         <div id="auth-right">
-
+                                <div style="padding-top:250px;padding-left:50px;">
+                                    <h2 class="text-light mx-auto">Selamat datang di Aplikasi SI PENA PINTAR untuk mendukung <strong>SI BERMARTABAT<strong></h2>
+                                </div>
                         </div>
                     </div>
                 </div>

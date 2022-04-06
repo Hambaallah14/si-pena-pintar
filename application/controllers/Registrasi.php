@@ -39,7 +39,7 @@ Class Registrasi extends CI_Controller{
 		$data['title'] 	 		 = "Form Registrasi - SI Pena Pintar";
 		$data['id_user'] 		 = $this->session->userdata('id_user');
 		$data['akses_login'] 	 = $this->session->userdata('akses_login');
-		$data['user'] 	 		 = $this->MUser->user_by_iduser($this->session->userdata('id_user'), $this->session->userdata('akses_login'));
+		$data['user'] 	 		 = $this->MUser->select_registrasi_user($this->session->userdata('id_user'));
 		$data['pelatihan']		 = $this->MPeserta->allPelatihan();
 		$data['agama']			 = $this->MPeserta->allAgama();
 		$data['gol']			 = $this->MPeserta->allGolongan();

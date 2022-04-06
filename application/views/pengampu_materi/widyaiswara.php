@@ -1,5 +1,5 @@
 <!-- WARNING -->
-<div class="flash-data" data-target="Widyaiswara" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
+<div class="flash-data" data-target="Pengampu Materi" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
 <!-- END WARNING -->
 
         <div id="main-content">

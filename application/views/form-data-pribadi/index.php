@@ -30,7 +30,7 @@
                 <div class="page-title mb-2">
                     <div class="row ">
                         <div class="col-md-10 bg-light mx-auto mt-4 pt-3 pb-3 pl-3 pr-3">
-                            <h3>DATA DIRI PEGAWAI</h3>
+                            <h3>DATA DIRI PESERTA</h3>
                         </div>
                     </div>
                 </div>

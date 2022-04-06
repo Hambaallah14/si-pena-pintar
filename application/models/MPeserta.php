@@ -108,9 +108,9 @@ class MPeserta extends CI_Model{
         "id_pelatihan"    => $this->input->post('peserta-pelatihan', true),
         "id_gol"          => $this->input->post('peserta-gol', true),
         "jab_terakhir"    => $this->input->post('peserta-jabatan', true),
-        "id_pola"         => $this->input->post('peserta-pola', true),
         "id_instansi"     => $this->input->post('peserta-instansi', true),
         "unor"            => $this->input->post('peserta-unor', true),
+        "id_pola"         => $this->input->post('peserta-pola', true),
         "alamat_unor"     => $this->input->post('peserta-alamat_unor', true)
       ];
       $this->db->where("nip_peserta", $this->input->post('peserta-nip', true));

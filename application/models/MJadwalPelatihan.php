@@ -13,7 +13,7 @@ class MJadwalPelatihan extends CI_Model{
       INNER JOIN tb_header_jadwal_pengajar ON tb_header_jadwal_pengajar.id_j_m=tb_header_jadwal_materi.id_j_m INNER JOIN tb_zoom ON tb_zoom.id=tb_header_jadwal_pengajar.id_room INNER JOIN tb_sesi ON tb_sesi.id_sesi=tb_header_jadwal_pengajar.id_sesi INNER JOIN tb_mapel ON
       tb_mapel.id_mapel=tb_header_jadwal_materi.id_materi INNER JOIN tb_detail_batch ON tb_detail_batch.id_angkatan=tb_header_jadwal_pengajar.id_angkatan INNER JOIN tb_detail_angkatan ON
       tb_detail_angkatan.id_angkatan=tb_header_jadwal_pengajar.id_angkatan INNER JOIN tb_detail_kelompok ON
-      tb_detail_kelompok.id_kelompok=tb_detail_angkatan.id_kelompok INNER JOIN tb_cara_belajar ON tb_cara_belajar.id=tb_mapel.id_cara_belajar INNER JOIN tb_pembelajaran ON tb_pembelajaran.id=tb_mapel.id_pembelajaran INNER JOIN tb_widyaiswara ON tb_widyaiswara.nip_wi=tb_header_jadwal_pengajar.id_pembimbing INNER JOIN tb_pendamping ON tb_header_jadwal_pengajar.id_pendamping=tb_pendamping.nip WHERE tb_detail_kelompok.nip_peserta = '$nip' ORDER BY tb_header_jadwal_tanggal.tanggal")->result_array();
+      tb_detail_kelompok.id_kelompok=tb_detail_angkatan.id_kelompok INNER JOIN tb_cara_belajar ON tb_cara_belajar.id=tb_mapel.id_cara_belajar INNER JOIN tb_pembelajaran ON tb_pembelajaran.id=tb_mapel.id_pembelajaran INNER JOIN tb_widyaiswara ON tb_widyaiswara.nip_wi=tb_header_jadwal_pengajar.id_pembimbing INNER JOIN tb_pendamping ON tb_header_jadwal_pengajar.id_pendamping=tb_pendamping.nip WHERE tb_detail_kelompok.nip_peserta = '$nip' ORDER BY tb_header_jadwal_materi.id_j_m")->result_array();
     }
 
     public function allMetodeBelajar(){
@@ -62,8 +62,8 @@ class MJadwalPelatihan extends CI_Model{
 
     // JADWAL MATERI
     public function jadwal_materi($id_tanggal){
-      return $this->db->query("SELECT tb_header_jadwal_materi.id_j_m, tb_header_jadwal_materi.id_agenda, tb_header_agenda.agenda, tb_mapel.id_mapel, tb_mapel.mapel, tb_cara_belajar.cara_belajar FROM tb_header_agenda INNER JOIN tb_header_jadwal_materi ON tb_header_jadwal_materi.id_agenda=tb_header_agenda.id_agenda INNER JOIN tb_mapel ON tb_mapel.id_mapel=tb_header_jadwal_materi.id_materi INNER JOIN tb_cara_belajar ON tb_cara_belajar.id=tb_mapel.id_cara_belajar WHERE tb_header_jadwal_materi.id_tanggal = '$id_tanggal'")->result_array();
-      return $this->db->query("SELECT * FROM tb_header_jadwal_materi WHERE id_tanggal = '$id_tanggal'")->result_array();
+      return $this->db->query("SELECT tb_header_jadwal_materi.id_j_m, tb_header_jadwal_materi.id_agenda, tb_header_agenda.agenda, tb_mapel.id_mapel, tb_mapel.mapel, tb_cara_belajar.cara_belajar FROM tb_header_agenda INNER JOIN tb_header_jadwal_materi ON tb_header_jadwal_materi.id_agenda=tb_header_agenda.id_agenda INNER JOIN tb_mapel ON tb_mapel.id_mapel=tb_header_jadwal_materi.id_materi INNER JOIN tb_cara_belajar ON tb_cara_belajar.id=tb_mapel.id_cara_belajar WHERE tb_header_jadwal_materi.id_tanggal = '$id_tanggal' ORDER BY tb_header_jadwal_materi.id_j_m")->result_array();
+      // return $this->db->query("SELECT * FROM tb_header_jadwal_materi WHERE id_tanggal = '$id_tanggal'")->result_array();
     }
 
     public function selectMateri($id_agenda){
